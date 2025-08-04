@@ -1358,3 +1358,88 @@ function openWhatsApp() {
     // Open WhatsApp
     window.open(whatsappURL, '_blank');
 }
+let currentSlideIndex = 0;
+        let slideInterval;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        
+        function showSlide(index) {
+            // Remove active class from all slides and dots
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            // Add active class to current slide and dot
+            slides[index].classList.add('active');
+            dots[index].classList.add('active');
+            
+            // Trigger animations by removing and re-adding animation classes
+            const activeSlide = slides[index];
+            const animatedElements = activeSlide.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in-up');
+            animatedElements.forEach(el => {
+                el.style.animation = 'none';
+                el.offsetHeight; // Trigger reflow
+                el.style.animation = null;
+            });
+        }
+        
+        function nextSlide() {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+        
+        function previousSlide() {
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            showSlide(currentSlideIndex);
+        }
+        
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+            resetAutoPlay();
+        }
+        
+        function startAutoPlay() {
+            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+        
+        function resetAutoPlay() {
+            clearInterval(slideInterval);
+            startAutoPlay();
+        }
+        
+        // Start auto-play
+        startAutoPlay();
+        
+        // Pause auto-play on hover
+        const carouselContainer = document.querySelector('.carousel-container');
+        carouselContainer.addEventListener('mouseenter', () => {
+            clearInterval(slideInterval);
+        });
+        
+        carouselContainer.addEventListener('mouseleave', () => {
+            startAutoPlay();
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        carouselContainer.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        carouselContainer.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+                resetAutoPlay();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+                resetAutoPlay();
+            }
+        }

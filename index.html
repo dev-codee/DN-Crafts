@@ -17,71 +17,7 @@
             }
         }
     </script>
-    <style>
-        /* WhatsApp Fixed Button Styles */
-        .whatsapp-widget {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 9999;
-            background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-            outline: none;
-            animation: pulse 2s infinite;
-        }
-
-        .whatsapp-widget:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
-        }
-
-        .whatsapp-widget:active {
-            transform: scale(0.95);
-        }
-
-        .whatsapp-widget svg {
-            width: 32px;
-            height: 32px;
-            fill: white;
-        }
-
-        @keyframes pulse {
-            0% {
-                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-            }
-
-            50% {
-                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5), 0 0 0 10px rgba(37, 211, 102, 0.1);
-            }
-
-            100% {
-                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .whatsapp-widget {
-                bottom: 80px;
-                right: 15px;
-                width: 55px;
-                height: 55px;
-            }
-
-            .whatsapp-widget svg {
-                width: 28px;
-                height: 28px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="bg-gray-50 font-sans antialiased text-gray-800 min-h-screen">
@@ -453,27 +389,140 @@
     </div>
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
         <div
-            class="relative bg-gradient-to-br from-yellow-50 to-indigo-100 py-12 sm:py-16 md:py-24 lg:py-32 rounded-2xl sm:rounded-3xl mx-3 sm:mx-4 my-4 sm:my-6 md:my-8 md:mx-auto md:max-w-7xl overflow-hidden">
-            <div class="container mx-auto px-4 sm:px-6 text-center z-10 relative">
-                <h2
-                    class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-gray-900 leading-tight mb-3 sm:mb-4 lg:mb-6">
-                    DN Crafts
-                </h2>
-                <p
-                    class="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 max-w-xs sm:max-w-lg md:max-w-2xl mx-auto mb-6 sm:mb-8 px-2">
-                    The perfect gift, for the moments that matter.
-                </p>
-                <button
-                    class="bg-yellow-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base lg:text-lg font-semibold hover:bg-yellow-700 transition-all duration-300 inline-flex items-center transform hover:scale-105">
-                    Shop Now
-                    <svg class="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m9 5 7 7-7 7"></path>
-                    </svg>
-                </button>
+            class="carousel-container relative mx-3 sm:mx-4 my-4 sm:my-6 md:my-8 md:mx-auto md:max-w-7xl **h-[300px] sm:h-[350px] md:h-[400px] lg:h-[400px]**">
+            <div class="carousel-slide active"
+                style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                <div class="carousel-content">
+                    <div class="container mx-auto px-6 sm:px-8 lg:px-12">
+                        <div class="max-w-2xl text-white">
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 slide-in-left">
+                                DN Crafts
+                            </h2>
+                            <p class="text-lg sm:text-xl md:text-2xl mb-6 slide-in-left" style="animation-delay: 0.2s;">
+                                The perfect gift, for the moments that matter.
+                            </p>
+                            <p class="text-sm sm:text-base md:text-lg mb-8 opacity-90 fade-in-up">
+                                Discover our handcrafted collection of unique gifts, personalized items, and beautiful
+                                decorations.
+                            </p>
+                            <button
+                                class="bg-yellow-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-yellow-700 transition-all duration-300 inline-flex items-center transform hover:scale-105 fade-in-up">
+                                Shop Now
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m9 5 7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="absolute inset-0 bg-gradient-to-br from-white to-yellow-50 opacity-50"></div>
+
+            <div class="carousel-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1549465220-1a8b9238cd48?ixlib=rb-4.0.3&auto=format&fit=crop&w=1469&q=80');">
+                <div class="carousel-content">
+                    <div class="container mx-auto px-6 sm:px-8 lg:px-12">
+                        <div class="max-w-2xl text-white ml-auto text-right">
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 slide-in-right">
+                                Special Gift Boxes
+                            </h2>
+                            <p class="text-lg sm:text-xl md:text-2xl mb-6 slide-in-right"
+                                style="animation-delay: 0.2s;">
+                                Curated collections for every occasion
+                            </p>
+                            <p class="text-sm sm:text-base md:text-lg mb-8 opacity-90 fade-in-up">
+                                From birthdays to anniversaries, find the perfect gift box filled with love and care.
+                            </p>
+                            <button
+                                class="bg-pink-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-pink-700 transition-all duration-300 inline-flex items-center transform hover:scale-105 fade-in-up">
+                                View Collection
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m9 5 7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1606041008023-472dfb5e530f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1476&q=80');">
+                <div class="carousel-content">
+                    <div class="container mx-auto px-6 sm:px-8 lg:px-12">
+                        <div class="max-w-2xl text-white text-center mx-auto">
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 slide-in-left">
+                                Handmade Excellence
+                            </h2>
+                            <p class="text-lg sm:text-xl md:text-2xl mb-6 slide-in-left" style="animation-delay: 0.2s;">
+                                Every piece tells a story
+                            </p>
+                            <p class="text-sm sm:text-base md:text-lg mb-8 opacity-90 fade-in-up">
+                                Crafted with passion and attention to detail, our handmade items bring warmth to every
+                                home.
+                            </p>
+                            <button
+                                class="bg-green-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-green-700 transition-all duration-300 inline-flex items-center transform hover:scale-105 fade-in-up">
+                                Explore Crafts
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m9 5 7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
+                <div class="carousel-content">
+                    <div class="container mx-auto px-6 sm:px-8 lg:px-12">
+                        <div class="max-w-2xl text-white">
+                            <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 slide-in-left">
+                                Personalized Gifts
+                            </h2>
+                            <p class="text-lg sm:text-xl md:text-2xl mb-6 slide-in-left" style="animation-delay: 0.2s;">
+                                Make it uniquely yours
+                            </p>
+                            <p class="text-sm sm:text-base md:text-lg mb-8 opacity-90 fade-in-up">
+                                Add names, dates, or special messages to create one-of-a-kind gifts that will be
+                                treasured forever.
+                            </p>
+                            <button
+                                class="bg-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-purple-700 transition-all duration-300 inline-flex items-center transform hover:scale-105 fade-in-up">
+                                Customize Now
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m9 5 7 7-7 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navigation Arrows -->
+        <button class="carousel-nav prev" onclick="previousSlide()">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+
+        <button class="carousel-nav next" onclick="nextSlide()">
+            <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+
+        <!-- Navigation Dots -->
+        <div class="carousel-dots">
+            <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+            <button class="carousel-dot" onclick="goToSlide(1)"></button>
+            <button class="carousel-dot" onclick="goToSlide(2)"></button>
+            <button class="carousel-dot" onclick="goToSlide(3)"></button>
+        </div>
         </div>
 
         <!-- Products Section -->
