@@ -390,7 +390,7 @@
     <!-- Main Content -->
     <main>
         <div
-            class="carousel-container relative mx-3 sm:mx-4 my-4 sm:my-6 md:my-8 md:mx-auto md:max-w-7xl **h-[300px] sm:h-[350px] md:h-[400px] lg:h-[400px]**">
+            class="carousel-container relative mx-3 sm:mx-4 my-4 sm:my-6 md:my-8 md:mx-auto md:max-w-7xl h-[300px] sm:h-[350px] md:h-[400px] lg:h-[400px]">
             <div class="carousel-slide active"
                 style="background-image: url('https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');">
                 <div class="carousel-content">
@@ -503,7 +503,6 @@
                 </div>
             </div>
         </div>
-        <!-- Navigation Arrows -->
         <button class="carousel-nav prev" onclick="previousSlide()">
             <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
@@ -516,13 +515,11 @@
             </svg>
         </button>
 
-        <!-- Navigation Dots -->
         <div class="carousel-dots">
             <button class="carousel-dot active" onclick="goToSlide(0)"></button>
             <button class="carousel-dot" onclick="goToSlide(1)"></button>
             <button class="carousel-dot" onclick="goToSlide(2)"></button>
             <button class="carousel-dot" onclick="goToSlide(3)"></button>
-        </div>
         </div>
 
         <!-- Products Section -->
