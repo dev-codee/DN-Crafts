@@ -1,6 +1,17 @@
 
 
-const categories = ['All', 'Apparel', 'Home Goods', 'Accessories', 'Electronics', 'Furniture'];
+const categories = [
+  'All',
+  'Acrylic Products',
+  'Invitation Cards',
+  'Favor Boxes',
+  'Personalized Nikkah Namas',
+  'Customized Bride Dupata',
+  'Tabarak Boxes',
+  'Occasion Gifts',
+  'Flower Bouquets',
+  'Gift Baskets',
+];
 
 // Application State
 let cartItems = [];
@@ -743,9 +754,13 @@ function toggleBrandFilter(brand) {
 
 function advancedFilterProducts() {
     return products.filter(product => {
+        // Correctly use the global selectedCategory and searchTerm
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
         const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             product.category.toLowerCase().includes(searchTerm.toLowerCase());
+        
+        // Ensure priceRange and selectedBrands are initialized or handled
+        // You may need to adjust these checks based on how you handle your filters
         const matchesPrice = product.price >= priceRange.min && product.price <= priceRange.max;
         const matchesBrand = selectedBrands.length === 0 || selectedBrands.includes(product.brand);
 
