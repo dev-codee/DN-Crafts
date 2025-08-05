@@ -19,6 +19,8 @@ let isCartOpen = false;
 let isCheckoutOpen = false;
 let isMobileMenuOpen = false;
 let isMobileSearchOpen = false;
+let priceRange = { min: 0, max: 50000 }; // Uncomment if not already defined
+let selectedBrands = []; // Uncomment if not already defined
 
 // DOM Elements
 const elements = {
@@ -316,9 +318,11 @@ function createProductCard(product) {
             `;
 }
 
+
+
 function filterProducts() {
     return products.filter(product => {
-        // Category filter
+        // Category filter - this is the main fix
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
         
         // Search filter
@@ -327,14 +331,16 @@ function filterProducts() {
             product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
             product.description.toLowerCase().includes(searchTerm.toLowerCase());
         
-        // Price filter (only if priceRange is defined)
-        const matchesPrice = typeof priceRange === 'undefined' || 
-            (product.price >= priceRange.min && product.price <= priceRange.max);
+        // Only apply additional filters if they exist and are defined
+        let matchesPrice = true;
+        if (typeof priceRange !== 'undefined' && priceRange !== null) {
+            matchesPrice = product.price >= priceRange.min && product.price <= priceRange.max;
+        }
         
-        // Brand filter (only if selectedBrands is defined and product has brand property)
-        const matchesBrand = typeof selectedBrands === 'undefined' || 
-            selectedBrands.length === 0 || 
-            (product.brand && selectedBrands.includes(product.brand));
+        let matchesBrand = true;
+        if (typeof selectedBrands !== 'undefined' && selectedBrands !== null && selectedBrands.length > 0) {
+            matchesBrand = product.brand && selectedBrands.includes(product.brand);
+        }
 
         return matchesCategory && matchesSearch && matchesPrice && matchesBrand;
     });
@@ -749,9 +755,6 @@ function updateSavedItemsDisplay() {
     `).join('');
 }
 
-// 8. ADVANCED SEARCH WITH FILTERS
-let priceRange = { min: 0, max: 1000 };
-let selectedBrands = [];
 
 function updatePriceFilter(min, max) {
     priceRange = { min, max };
@@ -1337,7 +1340,7 @@ function createProductCard(product) {
                 <p class="text-xs ${stockInfo.class} mb-2 font-medium">${stockInfo.text}</p>
                 
                 <div class="flex justify-between items-center">
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">$${formatPrice(product.price)}</p>
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">${formatPrice(product.price)} pkr</p>
                     
                     ${stockInfo.status === 'out-of-stock' ?
             '<button class="bg-gray-400 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium cursor-not-allowed" disabled>Out of Stock</button>' :
