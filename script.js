@@ -1,5 +1,4 @@
 
-
 const categories = [
   'All',
   'Acrylic Products',
@@ -12,7 +11,6 @@ const categories = [
   'Flower Bouquets',
   'Gift Baskets',
 ];
-
 // Application State
 let cartItems = [];
 let selectedCategory = 'All';
@@ -293,7 +291,7 @@ function createProductCard(product) {
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
                     <div class="relative overflow-hidden">
                         <img
-                            src="${product.image}"
+                            src="${product.image || 'https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'}"
                             alt="${product.name}"
                             class="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                             onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"
@@ -320,16 +318,34 @@ function createProductCard(product) {
 
 function filterProducts() {
     return products.filter(product => {
+        // Category filter
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
-        const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            product.category.toLowerCase().includes(searchTerm.toLowerCase());
-        return matchesCategory && matchesSearch;
+        
+        // Search filter
+        const matchesSearch = searchTerm === '' || 
+            product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.description.toLowerCase().includes(searchTerm.toLowerCase());
+        
+        // Price filter (only if priceRange is defined)
+        const matchesPrice = typeof priceRange === 'undefined' || 
+            (product.price >= priceRange.min && product.price <= priceRange.max);
+        
+        // Brand filter (only if selectedBrands is defined and product has brand property)
+        const matchesBrand = typeof selectedBrands === 'undefined' || 
+            selectedBrands.length === 0 || 
+            (product.brand && selectedBrands.includes(product.brand));
+
+        return matchesCategory && matchesSearch && matchesPrice && matchesBrand;
     });
 }
 
 function renderProducts() {
     const filteredProducts = filterProducts();
-
+    
+    console.log('Filtered products count:', filteredProducts.length); // Add this for debugging
+    console.log('Selected category:', selectedCategory); // Add this for debugging
+    
     if (filteredProducts.length === 0) {
         elements.productsGrid.classList.add('hidden');
         elements.noProducts.classList.remove('hidden');
@@ -1344,10 +1360,6 @@ function createProductCard(product) {
 // 24. ENHANCED FILTER AND RENDER FUNCTIONS
 // Update the existing filterProducts function
 const originalFilterProducts = filterProducts;
-filterProducts = function () {
-    let filtered = advancedFilterProducts();
-    return getSortedProducts(filtered);
-};
 
 // 25. PRICE RANGE FILTER HANDLERS
 function setupPriceRangeFilters() {

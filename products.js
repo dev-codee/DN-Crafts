@@ -11,7 +11,7 @@ const products = [
     name: '1 Pound Cake Box 8*8 Inches',
     category: 'Acrylic Products',
     price: getRandomPrice(800, 1500),
-    image: null, // Placeholder for your image URL
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box', // Placeholder for your image URL
     description: 'Acrylic cake box for a 1-pound cake, 8x8 inches.',
   },
   {
@@ -19,7 +19,7 @@ const products = [
     name: '2 Pound Cake Box 10*10 Inches',
     category: 'Acrylic Products',
     price: getRandomPrice(1200, 2500),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Acrylic cake box for a 2-pound cake, 10x10 inches.',
   },
   {
@@ -27,7 +27,7 @@ const products = [
     name: '3 Pound Cake Box 12*12 Inches',
     category: 'Acrylic Products',
     price: getRandomPrice(1800, 3500),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Acrylic cake box for a 3-pound cake, 12x12 inches.',
   },
   {
@@ -35,7 +35,7 @@ const products = [
     name: '5 Pound Cake Box 14*14 Inches',
     category: 'Acrylic Products',
     price: getRandomPrice(2500, 5000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Acrylic cake box for a 5-pound cake, 14x14 inches.',
   },
   {
@@ -43,7 +43,7 @@ const products = [
     name: 'Wedding Bid Boxes',
     category: 'Acrylic Products',
     price: getRandomPrice(3000, 8000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Elegant acrylic boxes for wedding bids.',
   },
   {
@@ -51,7 +51,7 @@ const products = [
     name: 'Wedding Favor Boxes',
     category: 'Acrylic Products',
     price: getRandomPrice(500, 1500),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Small acrylic boxes for wedding favors.',
   },
   {
@@ -59,7 +59,7 @@ const products = [
     name: 'Customized Size Box',
     category: 'Acrylic Products',
     price: getRandomPrice(1500, 10000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Acrylic box with custom dimensions and design.',
   },
   {
@@ -67,7 +67,7 @@ const products = [
     name: 'Gift Bag',
     category: 'Acrylic Products',
     price: getRandomPrice(300, 800),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Stylish acrylic gift bag for various occasions.',
   },
   {
@@ -75,7 +75,7 @@ const products = [
     name: 'Bangles Box',
     category: 'Acrylic Products',
     price: getRandomPrice(1000, 3000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Acrylic box designed to store bangles.',
   },
   {
@@ -83,7 +83,7 @@ const products = [
     name: 'Quran Pak Box',
     category: 'Acrylic Products',
     price: getRandomPrice(2000, 6000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Decorative acrylic box for the Quran Pak.',
   },
 
@@ -93,7 +93,7 @@ const products = [
     name: 'Luxury Acrylic Box Wedding Invite',
     category: 'Invitation Cards',
     price: getRandomPrice(4000, 12000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Premium wedding invitation card in a luxurious acrylic box.',
   },
   {
@@ -101,7 +101,7 @@ const products = [
     name: 'Simple Acrylic Box Wedding Invite',
     category: 'Invitation Cards',
     price: getRandomPrice(2000, 7000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Elegant wedding invitation card in a simple acrylic box.',
   },
   {
@@ -109,7 +109,7 @@ const products = [
     name: 'Ultra-Luxury Acrylic Box Wedding Invite With Dry Fruit Portion',
     category: 'Invitation Cards',
     price: getRandomPrice(8000, 20000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'High-end wedding invitation with a dedicated dry fruit compartment.',
   },
   {
@@ -117,7 +117,7 @@ const products = [
     name: 'Ultra Pro Max Acrylic Box Luxury Wedding Invite With 3 Dry Fruit Portion',
     category: 'Invitation Cards',
     price: getRandomPrice(15000, 35000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'The ultimate luxury wedding invite with three dry fruit compartments.',
   },
   {
@@ -125,7 +125,7 @@ const products = [
     name: 'Simple Foldable Wedding Invite',
     category: 'Invitation Cards',
     price: getRandomPrice(500, 1500),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Classic foldable wedding invitation card.',
   },
 
@@ -135,7 +135,7 @@ const products = [
     name: 'Acrylic Favor Box',
     category: 'Favor Boxes',
     price: getRandomPrice(300, 800),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Small acrylic boxes for event favors.',
   },
   {
@@ -143,7 +143,7 @@ const products = [
     name: 'Customized Acrylic Favor Box with Tag',
     category: 'Favor Boxes',
     price: getRandomPrice(500, 1200),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Custom acrylic favor boxes with a personalized tag.',
   },
   {
@@ -151,7 +151,7 @@ const products = [
     name: 'Tin Wedding Favor Box',
     category: 'Favor Boxes',
     price: getRandomPrice(200, 600),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Stylish tin boxes for wedding favors.',
   },
   {
@@ -159,7 +159,7 @@ const products = [
     name: 'Cardboard Wedding Favor Box',
     category: 'Favor Boxes',
     price: getRandomPrice(150, 400),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Eco-friendly cardboard boxes for wedding favors.',
   },
   
@@ -169,7 +169,7 @@ const products = [
     name: 'Personalized Nikkah Namah Frame',
     category: 'Personalized Nikkah Namas',
     price: getRandomPrice(5000, 15000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Beautifully framed and personalized Nikkah Namah.',
   },
   {
@@ -177,7 +177,7 @@ const products = [
     name: 'Customized Nikkah Namah Frame',
     category: 'Personalized Nikkah Namas',
     price: getRandomPrice(7000, 20000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Fully customized Nikkah Namah frame with unique designs.',
   },
   
@@ -187,7 +187,7 @@ const products = [
     name: 'Customized Bride Dupata with Dua’s',
     category: 'Customized Bride Dupata',
     price: getRandomPrice(8000, 25000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Bridal dupatta customized with sacred duas.',
   },
   {
@@ -195,7 +195,7 @@ const products = [
     name: 'Customized Bride Dupata with Groom Name',
     category: 'Customized Bride Dupata',
     price: getRandomPrice(10000, 30000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Bridal dupatta customized with the groom’s name.',
   },
   
@@ -205,7 +205,7 @@ const products = [
     name: 'Acrylic Umrah Tabarak Box',
     category: 'Tabarak Boxes',
     price: getRandomPrice(1500, 5000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Acrylic box for Umrah souvenirs.',
   },
   {
@@ -213,7 +213,7 @@ const products = [
     name: 'Cardboard Umrah Tabarak Box',
     category: 'Tabarak Boxes',
     price: getRandomPrice(800, 2000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Cardboard box for Umrah souvenirs.',
   },
   {
@@ -221,7 +221,7 @@ const products = [
     name: 'Umrah Tabarak Bags',
     category: 'Tabarak Boxes',
     price: getRandomPrice(500, 1500),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Special bags for Umrah souvenirs.',
   },
 
@@ -231,7 +231,7 @@ const products = [
     name: 'Eid Gifts',
     category: 'Occasion Gifts',
     price: getRandomPrice(1000, 5000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Curated gift items for Eid celebrations.',
   },
   {
@@ -239,7 +239,7 @@ const products = [
     name: 'Birthday Gifts',
     category: 'Occasion Gifts',
     price: getRandomPrice(1000, 6000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Personalized gifts for birthdays.',
   },
   {
@@ -247,7 +247,7 @@ const products = [
     name: 'Ramzan Gifts',
     category: 'Occasion Gifts',
     price: getRandomPrice(1200, 7000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Thoughtful gifts for the holy month of Ramzan.',
   },
   {
@@ -255,7 +255,7 @@ const products = [
     name: 'Father’s Day Gifts',
     category: 'Occasion Gifts',
     price: getRandomPrice(1500, 8000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Unique gift items for Father’s Day.',
   },
   {
@@ -263,7 +263,7 @@ const products = [
     name: 'Mother’s Day Gifts',
     category: 'Occasion Gifts',
     price: getRandomPrice(1500, 9000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Heartfelt gifts for Mother’s Day.',
   },
 
@@ -273,7 +273,7 @@ const products = [
     name: 'Fresh Flowers Bouquet',
     category: 'Flower Bouquets',
     price: getRandomPrice(2000, 10000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Bouquet made with fresh flowers.',
   },
   {
@@ -281,7 +281,7 @@ const products = [
     name: 'Ribbon Petal Bouquet',
     category: 'Flower Bouquets',
     price: getRandomPrice(1500, 7000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Bouquet of handcrafted ribbon petals.',
   },
   {
@@ -289,7 +289,7 @@ const products = [
     name: 'Cash Bouquet',
     category: 'Flower Bouquets',
     price: getRandomPrice(3000, 20000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Creative bouquet made with cash notes.',
   },
   {
@@ -297,7 +297,7 @@ const products = [
     name: 'Snacks Bouquet',
     category: 'Flower Bouquets',
     price: getRandomPrice(1800, 8000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Bouquet filled with a variety of snacks.',
   },
   {
@@ -305,7 +305,7 @@ const products = [
     name: 'Money Bouquet',
     category: 'Flower Bouquets',
     price: getRandomPrice(4000, 25000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Bouquet featuring money as the main element.',
   },
   {
@@ -313,7 +313,7 @@ const products = [
     name: 'Jewelry Bouquet',
     category: 'Flower Bouquets',
     price: getRandomPrice(5000, 30000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Bouquet adorned with beautiful jewelry pieces.',
   },
 
@@ -323,7 +323,7 @@ const products = [
     name: 'Snacks Basket',
     category: 'Gift Baskets',
     price: getRandomPrice(2500, 10000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Basket filled with an assortment of snacks.',
   },
   {
@@ -331,7 +331,7 @@ const products = [
     name: 'Food Basket',
     category: 'Gift Baskets',
     price: getRandomPrice(3000, 15000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Basket with various food items and treats.',
   },
   {
@@ -339,7 +339,7 @@ const products = [
     name: 'Fruit Basket',
     category: 'Gift Baskets',
     price: getRandomPrice(2800, 12000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Basket containing a selection of fresh fruits.',
   },
   {
@@ -347,7 +347,7 @@ const products = [
     name: 'Dry Fruit Basket',
     category: 'Gift Baskets',
     price: getRandomPrice(3500, 18000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Basket with a premium selection of dry fruits.',
   },
   {
@@ -355,7 +355,7 @@ const products = [
     name: 'Makeup Basket',
     category: 'Gift Baskets',
     price: getRandomPrice(5000, 25000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Curated basket of makeup products.',
   },
   {
@@ -363,7 +363,7 @@ const products = [
     name: 'Chocolate Basket',
     category: 'Gift Baskets',
     price: getRandomPrice(2000, 10000),
-    image: null,
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=1+Pound+Cake+Box',
     description: 'Basket filled with assorted chocolates.',
   },
 ];
