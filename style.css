@@ -1,3 +1,78 @@
+       /* Container to align icons */
+       .social-icons-container {
+           display: flex;
+           gap: 1rem;
+           /* Space between icons */
+           align-items: center;
+       }
+
+       /* Base styling for each icon container */
+       .social-icon {
+           width: 35px;
+           height: 35px;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+           border: 2px solid #FFC107;
+           /* A shade of yellow */
+           border-radius: 50%;
+           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+       }
+
+       /* Styling the icons (the font awesome 'i' tags) */
+       .social-icon i {
+           font-size: 24px;
+           color: #FFC107;
+           /* Match the border color */
+       }
+
+       /* Hover effect */
+       .social-icon:hover {
+           background-color: #FFC107;
+           /* Fill the background with yellow */
+       }
+
+       .social-icon:hover i {
+           color: #fff;
+           /* Change the icon color to white on hover */
+       }
+
+       /* Container for the black line */
+       .black-line {
+           background-color: black;
+           width: 100%;
+           padding: 10px 0;
+           overflow: hidden;
+           /* This is crucial to hide the text when it's off-screen */
+           white-space: nowrap;
+           /* Prevents the text from wrapping to the next line */
+           box-sizing: border-box;
+       }
+
+       /* The text itself */
+       .moving-text-modern {
+           color: white;
+           font-size: 18px;
+           font-family: 'Arial', sans-serif;
+           display: inline-block;
+           /* Makes the animation work properly */
+           animation: scroll-left 15s linear infinite;
+           /* Applies the animation */
+       }
+
+       /* The keyframe animation */
+       @keyframes scroll-left {
+           0% {
+               transform: translateX(100%);
+               /* Starts the text off-screen to the right */
+           }
+
+           100% {
+               transform: translateX(-100%);
+               /* Ends the text off-screen to the left */
+           }
+       }
+
        /* WhatsApp Fixed Button Styles */
        .whatsapp-widget {
            position: fixed;

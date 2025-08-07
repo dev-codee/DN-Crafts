@@ -23,9 +23,15 @@
 <body class="bg-gray-50 font-sans antialiased text-gray-800 min-h-screen">
     <!-- Header -->
     <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="black-line">
+            <p class="moving-text-modern">
+                Bridge the distance and send a piece of your heart. Deliver gifts from the UK, US, Canada, Australia,
+                and beyond to your loved ones in Pakistan for moments that truly matter.
+            </p>
+        </div>
         <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
             <!-- Main header row -->
-            <div class="flex justify-between items-center">
+            <div class="flex justify-between items-center" >
                 <h1 class="text-xl sm:text-2xl font-bold text-golden-600">
                     <a href="#" class="hover:text-yellow-700 transition-colors">
                         <img src="dncrafts_design1-removebg-preview.png" alt="DN Crafts Logo" style="height: 60px;">
@@ -34,10 +40,10 @@
 
                 <!-- Desktop Navigation -->
                 <nav class="hidden lg:flex space-x-6 text-gray-600 font-medium">
-                    <a href="#" class="hover:text-yellow-600 transition-colors">Home</a>
-                    <a href="#" class="hover:text-yellow-600 transition-colors">Shop</a>
-                    <a href="#" class="hover:text-yellow-600 transition-colors">About</a>
-                    <a href="#" class="hover:text-yellow-600 transition-colors">Contact</a>
+                    <a href="#main" class="hover:text-yellow-600 transition-colors">Home</a>
+                    <a href="#cart-overlay" class="hover:text-yellow-600 transition-colors">Shop</a>
+                    <a href="#about-us" class="hover:text-yellow-600 transition-colors">About</a>
+                    <a href="#contact-info" class="hover:text-yellow-600 transition-colors">Contact</a>
                 </nav>
 
                 <!-- Desktop Search -->
@@ -202,7 +208,8 @@
                     <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 bg-gray-900 text-white p-4 z-40">
                         <div class="container mx-auto flex flex-col sm:flex-row items-center justify-between">
                             <p class="text-sm mb-3 sm:mb-0">
-                                We use cookies to enhance your browsing experience. By continuing to use our site, you
+                                We use cookies to enhance your browsing experience. By continuing to use our site,
+                                you
                                 agree to our
                                 <a href="#" class="text-yellow-400 hover:underline">Cookie Policy</a>.
                             </p>
@@ -388,7 +395,7 @@
         </div>
     </div>
     <!-- Main Content -->
-    <main>
+    <main id="main">
         <div
             class="carousel-container relative mx-3 sm:mx-4 my-4 sm:my-6 md:my-8 md:mx-auto md:max-w-7xl h-[300px] sm:h-[350px] md:h-[400px] lg:h-[400px]">
             <div class="carousel-slide active"
@@ -563,10 +570,13 @@
         <div class="container mx-auto px-4 sm:px-6">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
                 <div class="text-center sm:text-left">
-                    <a href="#" class="hover:text-yellow-700 transition-colors">
+                    <a href="#" class="hover:text-yellow-700 transition-colors" id="about-us">
                         <img src="dncrafts_design1-removebg-preview.png" alt="DN Crafts Logo" style="height: 130px;">
                     </a>
-                    <p class="text-sm">The perfect gift, for the moments that matter.</p>
+                    <p class="text-sm">DN Crafts, an online gift shop founded in 2025, specializes in a wide variety of
+                        personalized gift items. We offer customized gifts, including Umrah Tabarak gifts, acrylic
+                        boxes, gift baskets, money bouquets, and chocolate hampers. If you're looking for the perfect
+                        gift for a loved one, DN Crafts is the right place to visit.</p>
                 </div>
                 <div class="text-center sm:text-left">
                     <h4 class="font-semibold text-white mb-3">Quick Links</h4>
@@ -589,18 +599,36 @@
                         <a href="#" class="block hover:text-white transition-colors">FGift Baskets</a>
                     </div>
                 </div>
-                <div class="text-center sm:text-left">
+                <div class="text-center sm:text-left" id="contact-info">
                     <h4 class="font-semibold text-white mb-3">Contact Info</h4>
                     <div class="space-y-2 text-sm">
                         <p>📱 WhatsApp: +92 302 1943684</p>
                         <p>📧 infodncrafts@gmail.com</p>
                         <p>🏢 Lakhodair, lahore, Pakistan</p>
                     </div>
+                    <div class="social-icons-container">
+                        <a href="#" class="icon-link">
+                            <div class="social-icon facebook-icon">
+                                <i class="fab fa-facebook-f"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="icon-link">
+                            <div class="social-icon instagram-icon">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                        </a>
+                        <a href="#" class="icon-link">
+                            <div class="social-icon tiktok-icon">
+                                <i class="fab fa-tiktok"></i>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="text-center pt-6 sm:pt-8 border-t border-gray-800">
                 <p class="text-sm">&copy; 2025 DN Crafts. All rights reserved.</p>
-               <a href="https://dev-codee.github.io/" class="block hover:text-white transition-colors" target="_blank" rel="noopener noreferrer">Designed by Faizan Ahmad</a>
+                <a href="https://dev-codee.github.io/" class="block hover:text-white transition-colors" target="_blank"
+                    rel="noopener noreferrer">Designed by Faizan Ahmad</a>
             </div>
         </div>
         <div class="text-center sm:text-left">
