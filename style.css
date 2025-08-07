@@ -56,7 +56,7 @@
            font-family: 'Arial', sans-serif;
            display: inline-block;
            /* Makes the animation work properly */
-           animation: scroll-left 15s linear infinite;
+           animation: scroll-left 20s linear infinite;
            /* Applies the animation */
        }
 
