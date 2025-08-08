@@ -10,6 +10,10 @@ const categories = [
   'Occasion Gifts',
   'Flower Bouquets',
   'Gift Baskets',
+  'Cakes',
+  'Cupcake',
+  'Sundae',
+  'Biscuits',
 ];
 // Application State
 let cartItems = [];
@@ -293,7 +297,7 @@ function createProductCard(product) {
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
                     <div class="relative overflow-hidden">
                         <img
-                            src="${product.image || 'https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'}"
+                            src="${product.image }"
                             alt="${product.name}"
                             class="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                             onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"

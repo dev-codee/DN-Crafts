@@ -18,6 +18,25 @@
         }
     </script>
     <link rel="stylesheet" href="style.css">
+    <!-- Meta Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            };
+            if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+            n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t, s)
+        }(window, document, 'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1105464558217693');
+        fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+            src="https://www.facebook.com/tr?id=1105464558217693&ev=PageView&noscript=1" /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 
 <body class="bg-gray-50 font-sans antialiased text-gray-800 min-h-screen">
@@ -31,10 +50,10 @@
         </div>
         <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
             <!-- Main header row -->
-            <div class="flex justify-between items-center" >
+            <div class="flex justify-between items-center">
                 <h1 class="text-xl sm:text-2xl font-bold text-golden-600">
                     <a href="#" class="hover:text-yellow-700 transition-colors">
-                        <img src="dncrafts_design1-removebg-preview.png" alt="DN Crafts Logo" style="height: 60px;">
+                        <img src="pics\\logo.png" alt="DN Crafts Logo" style="height: 60px;">
                     </a>
                 </h1>
 
@@ -571,7 +590,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
                 <div class="text-center sm:text-left">
                     <a href="#" class="hover:text-yellow-700 transition-colors" id="about-us">
-                        <img src="dncrafts_design1-removebg-preview.png" alt="DN Crafts Logo" style="height: 130px;">
+                        <img src="pics\\logo.png" alt="DN Crafts Logo" style="height: 130px;">
                     </a>
                     <p class="text-sm">DN Crafts, an online gift shop founded in 2025, specializes in a wide variety of
                         personalized gift items. We offer customized gifts, including Umrah Tabarak gifts, acrylic
@@ -623,7 +642,7 @@
                             </div>
                         </a>
                     </div>
-                     <h4 class="font-semibold text-white mb-3">Payment Info</h4>
+                    <h4 class="font-semibold text-white mb-3">Payment Info</h4>
                     <div class="space-y-2 text-sm">
                         <p>📱 Jazz Cash/Easy Paisa: +92 302 1943684</p>
                         <p>🏢 Bank Transfer 55735002014434</p>

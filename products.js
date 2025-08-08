@@ -366,4 +366,172 @@ const products = [
     image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
     description: 'Basket filled with assorted chocolates.',
   },
+  {
+    "id": 44,
+    "name": "Chocolate Cake",
+    "category": "Cakes",
+    "price": 880,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A classic chocolate cake."
+  },
+  {
+    "id": 45,
+    "name": "Oreo Cake",
+    "category": "Cakes",
+    "price": 850,
+    "image": "pics\\oreoCake.png",
+    "description": "A cake with the rich flavor of Oreo cookies."
+  },
+  {
+    "id": 46,
+    "name": "Pineapple Cake",
+    "category": "Cakes",
+    "price": 1200,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A light and fruity pineapple cake."
+  },
+  {
+    "id": 47,
+    "name": "Coffee Cake",
+    "category": "Cakes",
+    "price": 950,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A cake with a distinctive coffee flavor."
+  },
+  {
+    "id": 48,
+    "name": "Almond Cake",
+    "category": "Cakes",
+    "price": 1000,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A moist cake with a rich almond taste."
+  },
+  {
+    "id": 49,
+    "name": "Fudge Cake",
+    "category": "Cakes",
+    "price": 1500,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A decadent and dense fudge cake."
+  },
+  {
+    "id": 50,
+    "name": "Brownie Cake",
+    "category": "Cakes",
+    "price": 900,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A rich and chewy brownie-based cake."
+  },
+  {
+    "id": 51,
+    "name": "Chocolate Cupcake",
+    "category": "Cupcake",
+    "price": 120,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A single chocolate cupcake."
+  },
+  {
+    "id": 52,
+    "name": "Pineapple Cupcake",
+    "category": "Cupcake",
+    "price": 120,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A single pineapple cupcake."
+  },
+  {
+    "id": 53,
+    "name": "Oreo Cupcake",
+    "category": "Cupcake",
+    "price": 120,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A single Oreo cupcake."
+  },
+  {
+    "id": 54,
+    "name": "Fudge Cupcake",
+    "category": "Cupcake",
+    "price": 300,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A single fudge cupcake."
+  },
+  {
+    "id": 55,
+    "name": "Chocolate Sundae",
+    "category": "Sundae",
+    "price": 220,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A sundae with rich chocolate sauce."
+  },
+  {
+    "id": 56,
+    "name": "Pineapple Sundae",
+    "category": "Sundae",
+    "price": 220,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A refreshing sundae with pineapple topping."
+  },
+  {
+    "id": 57,
+    "name": "Caramel Sundae",
+    "category": "Sundae",
+    "price": 220,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A classic sundae with sweet caramel."
+  },
+  {
+    "id": 58,
+    "name": "Butterscotch Sundae",
+    "category": "Sundae",
+    "price": 220,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A sundae with a creamy butterscotch flavor."
+  },
+  {
+    "id": 59,
+    "name": "Oreo Sundae",
+    "category": "Sundae",
+    "price": 220,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A sundae topped with crushed Oreo cookies."
+  },
+  {
+    "id": 60,
+    "name": "Plain Nan Khatai",
+    "category": "Biscuits",
+    "price": 1000,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "Traditional plain nan khatai biscuits."
+  },
+  {
+    "id": 61,
+    "name": "Almond Nan Khatai",
+    "category": "Biscuits",
+    "price": 1500,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "Nan khatai biscuits with almond pieces."
+  },
+  {
+    "id": 62,
+    "name": "Cake Rusk",
+    "category": "Biscuits",
+    "price": 1000,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "Crispy and crunchy cake rusk."
+  },
+  {
+    "id": 63,
+    "name": "Brownie",
+    "category": "Biscuits",
+    "price": 200,
+    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "description": "A single rich and chewy brownie."
+  },
+  {
+    "id": 64,
+    "name": "Special Anniversery Cake",
+    "category": "Cakes",
+    "price": 3500,
+    "image": "pics\\c1.jpg",
+    "description": "3 pound speical cake."
+  },
 ];
