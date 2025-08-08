@@ -1251,25 +1251,25 @@ function handleScroll() {
 
 function createProductCard(product) {
     return `
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group w-full">
             <div class="relative overflow-hidden">
                 <img
                     src="${product.image}"
                     alt="${product.name}"
-                    class="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    class="w-full h-32 sm:h-48 md:h-56 lg:h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                     onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"
                 />
                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
             </div>
-            <div class="p-3 sm:p-4">
-                <p class="text-xs sm:text-sm text-blue-600 font-medium mb-1">${product.category}</p>
-                <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2 leading-tight">${product.name}</h3>
-                <p class="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed">${product.description}</p>
-                <div class="flex justify-between items-center">
-                    <p class="text-lg sm:text-xl font-bold text-gray-900">${formatPrice(product.price)} pkr</p>
+            <div class="p-2 sm:p-3 md:p-4">
+                <p class="text-xs text-blue-600 font-medium mb-1">${product.category}</p>
+                <h3 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 leading-tight line-clamp-2">${product.name}</h3>
+                <p class="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 leading-relaxed line-clamp-2">${product.description}</p>
+                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+                    <p class="text-base sm:text-lg md:text-xl font-bold text-gray-900">${formatPrice(product.price)} pkr</p>
                     <button
                         onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                        class="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
+                        class="bg-blue-600 text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105 w-full sm:w-auto"
                     >
                         Add to Cart
                     </button>
@@ -1278,8 +1278,8 @@ function createProductCard(product) {
         </div>
     `;
 }
-const style = document.createElement('style');
-style.textContent = `
+const mobileStyles = document.createElement('style');
+mobileStyles.textContent = `
     .scrollbar-hide {
         -ms-overflow-style: none;
         scrollbar-width: none;
@@ -1287,18 +1287,31 @@ style.textContent = `
     .scrollbar-hide::-webkit-scrollbar {
         display: none;
     }
-    .category-row .relative {
-        position: relative;
+    
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
-    .category-row .absolute {
-        position: absolute !important;
-        z-index: 20;
-    }
-    .category-row .group:hover .opacity-0 {
-        opacity: 1;
+    
+    @media (max-width: 640px) {
+        .category-row .group:hover .opacity-0 {
+            opacity: 0.7 !important;
+        }
+        
+        /* Always show scroll buttons on mobile */
+        .category-row .opacity-0 {
+            opacity: 0.3;
+        }
+        
+        .category-row:hover .opacity-0,
+        .category-row:active .opacity-0 {
+            opacity: 0.8;
+        }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(mobileStyles);
 const originalFilterProducts = filterProducts;
 
 // 25. PRICE RANGE FILTER HANDLERS
@@ -1412,11 +1425,11 @@ function handleSwipe() {
 }
 function createCategoryRow(category) {
     const row = document.createElement('div');
-    row.className = 'category-row mb-12';
+    row.className = 'category-row mb-8 sm:mb-12';
     row.dataset.category = category.id;
 
     const title = document.createElement('h3');
-    title.className = 'text-xl font-bold mb-4 px-4';
+    title.className = 'text-lg sm:text-xl font-bold mb-3 sm:mb-4 px-2 sm:px-4';
     title.textContent = category.name;
     row.appendChild(title);
 
@@ -1424,13 +1437,14 @@ function createCategoryRow(category) {
     scroller.className = 'relative group';
 
     const container = document.createElement('div');
-    container.className = 'flex overflow-x-auto gap-4 px-4 pb-4 scrollbar-hide';
+    // Better mobile scrolling with smaller padding
+    container.className = 'flex overflow-x-auto gap-3 sm:gap-4 px-2 sm:px-4 pb-4 scrollbar-hide';
     container.dataset.category = category.id;
-    addTouchScrollSupport();
-    // Left scroll button
+
+    // Left scroll button - adjusted for mobile
     const leftButton = document.createElement('button');
-    leftButton.className = 'absolute left-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full shadow-lg w-10 h-10 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
-    leftButton.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>';
+    leftButton.className = 'absolute left-1 sm:left-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full shadow-lg w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
+    leftButton.innerHTML = '<svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>';
     leftButton.setAttribute('aria-label', 'Scroll left');
     leftButton.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1438,16 +1452,24 @@ function createCategoryRow(category) {
         scrollProducts(category.id, -1);
     });
 
-    // Right scroll button
+    // Right scroll button - adjusted for mobile
     const rightButton = document.createElement('button');
-    rightButton.className = 'absolute right-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full shadow-lg w-10 h-10 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
-    rightButton.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
+    rightButton.className = 'absolute right-1 sm:right-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full shadow-lg w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
+    rightButton.innerHTML = '<svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
     rightButton.setAttribute('aria-label', 'Scroll right');
     rightButton.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
         scrollProducts(category.id, 1);
     });
+
+    // Show buttons on mobile too (not just on hover)
+    if ('ontouchstart' in window) {
+        leftButton.classList.remove('opacity-0');
+        leftButton.classList.add('opacity-70');
+        rightButton.classList.remove('opacity-0');
+        rightButton.classList.add('opacity-70');
+    }
 
     scroller.appendChild(leftButton);
     scroller.appendChild(container);
@@ -1461,7 +1483,19 @@ function scrollProducts(categoryId, direction) {
     const container = document.querySelector(`[data-category="${categoryId}"]`);
     if (!container) return;
     
-    const scrollAmount = 280; // Width of one card plus gap
+    // Responsive scroll amounts based on screen size
+    const isMobile = window.innerWidth < 640;
+    const isTablet = window.innerWidth < 1024;
+    
+    let scrollAmount;
+    if (isMobile) {
+        scrollAmount = 200; // Mobile card width + gap
+    } else if (isTablet) {
+        scrollAmount = 240; // Tablet card width + gap
+    } else {
+        scrollAmount = 280; // Desktop card width + gap
+    }
+    
     const currentScroll = container.scrollLeft;
     const newScrollPosition = currentScroll + (direction * scrollAmount);
     
@@ -1472,6 +1506,11 @@ function scrollProducts(categoryId, direction) {
 }
 function populateProducts(products) {
     const categoriesContainer = document.getElementById('categories-container');
+    if (!categoriesContainer) {
+        console.error('Categories container not found');
+        return;
+    }
+    
     categoriesContainer.innerHTML = '';
 
     // Group products by category
@@ -1490,42 +1529,61 @@ function populateProducts(products) {
     // Create a row for each category
     Object.values(categories).forEach(category => {
         const row = createCategoryRow(category);
-        const container = row.querySelector('[data-category="' + category.id + '"]');
+        const container = row.querySelector(`[data-category="${category.id}"]`);
 
-        category.products.forEach(product => {
-            const productCard = document.createElement('div');
-            productCard.className = 'flex-shrink-0 w-64 sm:w-72';
-            productCard.innerHTML = createProductCard(product);
-            container.appendChild(productCard);
-        });
+        if (container) {
+            category.products.forEach(product => {
+                const productCard = document.createElement('div');
+                // Responsive card widths - smaller on mobile
+                productCard.className = 'flex-shrink-0 w-48 sm:w-64 md:w-72';
+                productCard.innerHTML = createProductCard(product);
+                container.appendChild(productCard);
+            });
+        }
 
         categoriesContainer.appendChild(row);
     });
 }
 function addTouchScrollSupport() {
     document.addEventListener('DOMContentLoaded', function() {
-        const containers = document.querySelectorAll('.category-row .flex.overflow-x-auto');
+        const containers = document.querySelectorAll('.category-row [data-category]');
         
         containers.forEach(container => {
             let startX = 0;
             let scrollLeft = 0;
-            let isDown = false;
+            let isScrolling = false;
 
             container.addEventListener('touchstart', (e) => {
                 startX = e.touches[0].pageX;
                 scrollLeft = container.scrollLeft;
-            });
+                isScrolling = false;
+            }, { passive: true });
 
             container.addEventListener('touchmove', (e) => {
                 if (!startX) return;
-                e.preventDefault();
+                
                 const x = e.touches[0].pageX;
-                const walk = (x - startX) * 2;
-                container.scrollLeft = scrollLeft - walk;
-            });
+                const walk = (startX - x) * 1.5; // Adjust sensitivity
+                
+                if (Math.abs(walk) > 5) {
+                    isScrolling = true;
+                    container.scrollLeft = scrollLeft + walk;
+                }
+            }, { passive: true });
 
             container.addEventListener('touchend', () => {
                 startX = 0;
+                setTimeout(() => {
+                    isScrolling = false;
+                }, 100);
+            }, { passive: true });
+
+            // Prevent click events on cards when scrolling
+            container.addEventListener('click', (e) => {
+                if (isScrolling) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
             });
         });
     });
