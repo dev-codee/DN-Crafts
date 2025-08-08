@@ -371,7 +371,7 @@ const products = [
     "name": "Chocolate Cake",
     "category": "Cakes",
     "price": 880,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "image": "pics\\choc cake.jpg",
     "description": "A classic chocolate cake."
   },
   {
@@ -395,7 +395,7 @@ const products = [
     "name": "Coffee Cake",
     "category": "Cakes",
     "price": 950,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "image": "pics\\cofee cake.jpg",
     "description": "A cake with a distinctive coffee flavor."
   },
   {
@@ -533,5 +533,21 @@ const products = [
     "price": 3500,
     "image": "pics\\c1.jpg",
     "description": "3 pound speical cake."
+  },
+  {
+    "id": 65,
+    "name": " 14 August Special Cake",
+    "category": "Cakes",
+    "price": 4000,
+    "image": "pics\\aug cake.jpg",
+    "description": "2 pound speical cake."
+  },
+  {
+    "id": 66,
+    "name": "spider Man Cake",
+    "category": "Cakes",
+    "price": 3000,
+    "image": "pics\\spider man cake.jpg",
+    "description": "2 pound speical cake."
   },
 ];
