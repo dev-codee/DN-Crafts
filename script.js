@@ -57,29 +57,6 @@ const elements = {
     mobileMenuToggle: document.getElementById('mobile-menu-toggle'),
     mobileMenu: document.getElementById('mobile-menu')
 };
-
-function init() {
-    // Check if products array exists
-    if (typeof products === 'undefined') {
-        console.error('Products array not found. Make sure products.js is loaded.');
-        return;
-    }
-    
-    renderCategories();
-    renderProducts();
-    updateCartCount();
-    setupEventListeners();
-
-    // Set initial button states
-    if (elements.whatsappOrder) elements.whatsappOrder.disabled = true;
-    if (elements.emailOrder) elements.emailOrder.disabled = true;
-}
-
-// Make sure to call init after DOM is loaded AND after products.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Small delay to ensure products.js is loaded
-    setTimeout(init, 100);
-});
 // Utility Functions
 function formatPrice(price) {
     return `${price.toFixed(2)}`;
