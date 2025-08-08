@@ -1,19 +1,18 @@
-
 const categories = [
-  'All',
-  'Acrylic Products',
-  'Invitation Cards',
-  'Favor Boxes',
-  'Personalized Nikkah Namas',
-  'Customized Bride Dupata',
-  'Tabarak Boxes',
-  'Occasion Gifts',
-  'Flower Bouquets',
-  'Gift Baskets',
-  'Cakes',
-  'Cupcake',
-  'Sundae',
-  'Biscuits',
+    'All',
+    'Acrylic Products',
+    'Invitation Cards',
+    'Favor Boxes',
+    'Personalized Nikkah Namas',
+    'Customized Bride Dupata',
+    'Tabarak Boxes',
+    'Occasion Gifts',
+    'Flower Bouquets',
+    'Gift Baskets',
+    'Cakes',
+    'Cupcake',
+    'Sundae',
+    'Biscuits',
 ];
 // Application State
 let cartItems = [];
@@ -59,6 +58,28 @@ const elements = {
     mobileMenu: document.getElementById('mobile-menu')
 };
 
+function init() {
+    // Check if products array exists
+    if (typeof products === 'undefined') {
+        console.error('Products array not found. Make sure products.js is loaded.');
+        return;
+    }
+    
+    renderCategories();
+    renderProducts();
+    updateCartCount();
+    setupEventListeners();
+
+    // Set initial button states
+    if (elements.whatsappOrder) elements.whatsappOrder.disabled = true;
+    if (elements.emailOrder) elements.emailOrder.disabled = true;
+}
+
+// Make sure to call init after DOM is loaded AND after products.js
+document.addEventListener('DOMContentLoaded', function() {
+    // Small delay to ensure products.js is loaded
+    setTimeout(init, 100);
+});
 // Utility Functions
 function formatPrice(price) {
     return `${price.toFixed(2)}`;
@@ -297,7 +318,7 @@ function createProductCard(product) {
                 <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
                     <div class="relative overflow-hidden">
                         <img
-                            src="${product.image }"
+                            src="${product.image}"
                             alt="${product.name}"
                             class="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-300"
                             onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"
@@ -326,43 +347,32 @@ function createProductCard(product) {
 
 function filterProducts() {
     return products.filter(product => {
-        // Category filter - this is the main fix
+        // Category filter
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
-        
-        // Search filter
-        const matchesSearch = searchTerm === '' || 
-            product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            product.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            product.description.toLowerCase().includes(searchTerm.toLowerCase());
-        
-        // Only apply additional filters if they exist and are defined
-        let matchesPrice = true;
-        if (typeof priceRange !== 'undefined' && priceRange !== null) {
-            matchesPrice = product.price >= priceRange.min && product.price <= priceRange.max;
-        }
-        
-        let matchesBrand = true;
-        if (typeof selectedBrands !== 'undefined' && selectedBrands !== null && selectedBrands.length > 0) {
-            matchesBrand = product.brand && selectedBrands.includes(product.brand);
-        }
 
-        return matchesCategory && matchesSearch && matchesPrice && matchesBrand;
+        // Search filter
+        const matchesSearch = searchTerm === '' ||
+            product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.category.toLowerCase().includes(searchTerm.toLowerCase());
+
+        return matchesCategory && matchesSearch;
     });
 }
 
+// Update the renderProducts function
 function renderProducts() {
-    const filteredProducts = filterProducts();
+    let filteredProducts = filterProducts();
     
-    console.log('Filtered products count:', filteredProducts.length); // Add this for debugging
-    console.log('Selected category:', selectedCategory); // Add this for debugging
-    
+    // Apply sorting
+    filteredProducts = getSortedProducts(filteredProducts);
+
     if (filteredProducts.length === 0) {
-        elements.productsGrid.classList.add('hidden');
-        elements.noProducts.classList.remove('hidden');
+        document.getElementById('no-products').classList.remove('hidden');
+        document.getElementById('categories-container').classList.add('hidden');
     } else {
-        elements.productsGrid.classList.remove('hidden');
-        elements.noProducts.classList.add('hidden');
-        elements.productsGrid.innerHTML = filteredProducts.map(createProductCard).join('');
+        document.getElementById('no-products').classList.add('hidden');
+        document.getElementById('categories-container').classList.remove('hidden');
+        populateProducts(filteredProducts);
     }
 }
 
@@ -781,7 +791,7 @@ function advancedFilterProducts() {
         const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
         const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
             product.category.toLowerCase().includes(searchTerm.toLowerCase());
-        
+
         // Ensure priceRange and selectedBrands are initialized or handled
         // You may need to adjust these checks based on how you handle your filters
         const matchesPrice = product.price >= priceRange.min && product.price <= priceRange.max;
@@ -1262,32 +1272,10 @@ function handleScroll() {
     }
 }
 
-// 23. ENHANCED PRODUCT CARD FUNCTION (replaces existing createProductCard)
 function createProductCard(product) {
-    const stockInfo = getStockStatus(product.id);
-    const isWishlisted = isInWishlist(product.id);
-    const avgRating = getAverageRating(product.id);
-
     return `
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group relative">
-            <!-- Wishlist Heart -->
-            <button 
-                onclick="toggleWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                class="absolute top-3 right-3 z-10 p-2 rounded-full ${isWishlisted ? 'text-red-500 bg-white' : 'text-gray-400 bg-white'} shadow-md hover:scale-110 transition-all"
-            >
-                <svg class="w-5 h-5" fill="${isWishlisted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.682l-1.318-1.364a4.5 4.5 0 00-6.364 0z"></path>
-                </svg>
-            </button>
-            
-            <!-- Stock Badge -->
-            ${stockInfo.status === 'out-of-stock' ?
-            '<div class="absolute top-3 left-3 bg-red-600 text-white px-2 py-1 rounded text-xs font-medium">Out of Stock</div>' :
-            stockInfo.status === 'low-stock' ?
-                '<div class="absolute top-3 left-3 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">Low Stock</div>' : ''
-        }
-            
-            <div class="relative overflow-hidden cursor-pointer" onclick="openImageZoom('${product.image}')">
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+            <div class="relative overflow-hidden">
                 <img
                     src="${product.image}"
                     alt="${product.name}"
@@ -1295,77 +1283,45 @@ function createProductCard(product) {
                     onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"
                 />
                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
-                
-                <!-- Quick View Button -->
-                <button 
-                    onclick="event.stopPropagation(); openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"
-                >
-                    <span class="bg-white text-gray-900 px-4 py-2 rounded-full font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-105">
-                        Quick View
-                    </span>
-                </button>
             </div>
-            
             <div class="p-3 sm:p-4">
-                <div class="flex justify-between items-start mb-2">
-                    <p class="text-xs sm:text-sm text-blue-600 font-medium">${product.category}</p>
-                    <button 
-                        onclick="addToComparison(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                        class="text-gray-400 hover:text-blue-600 transition-colors"
-                        title="Add to Compare"
-                    >
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                        </svg>
-                    </button>
-                </div>
-                
-                <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2 leading-tight cursor-pointer hover:text-blue-600 transition-colors" onclick="addToRecentlyViewed(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-                    ${product.name}
-                </h3>
-                
-                <!-- Rating -->
-                <div class="flex items-center mb-2">
-                    <div class="flex text-yellow-400 text-sm mr-2">
-                        ${Array(5).fill().map((_, i) =>
-            `<span class="${i < Math.floor(avgRating) ? 'text-yellow-400' : 'text-gray-300'}">★</span>`
-        ).join('')}
-                    </div>
-                    <span class="text-xs text-gray-500">(${avgRating || '0.0'})</span>
-                    <button onclick="openReviewsModal(${product.id})" class="text-xs text-blue-600 hover:underline ml-2">
-                        Reviews
-                    </button>
-                </div>
-                
+                <p class="text-xs sm:text-sm text-blue-600 font-medium mb-1">${product.category}</p>
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2 leading-tight">${product.name}</h3>
                 <p class="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed">${product.description}</p>
-                
-                <!-- Stock Status -->
-                <p class="text-xs ${stockInfo.class} mb-2 font-medium">${stockInfo.text}</p>
-                
                 <div class="flex justify-between items-center">
                     <p class="text-lg sm:text-xl font-bold text-gray-900">${formatPrice(product.price)} pkr</p>
-                    
-                    ${stockInfo.status === 'out-of-stock' ?
-            '<button class="bg-gray-400 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium cursor-not-allowed" disabled>Out of Stock</button>' :
-            `<div class="flex items-center space-x-2">
-                            ${createQuantitySelector(product.id)}
-                            <button
-                                onclick="addToCartWithQuantity(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                                class="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
-                            >
-                                Add to Cart
-                            </button>
-                        </div>`
-        }
+                    <button
+                        onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})"
+                        class="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
+                    >
+                        Add to Cart
+                    </button>
                 </div>
             </div>
         </div>
     `;
 }
-
-// 24. ENHANCED FILTER AND RENDER FUNCTIONS
-// Update the existing filterProducts function
+const style = document.createElement('style');
+style.textContent = `
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .category-row .relative {
+        position: relative;
+    }
+    .category-row .absolute {
+        position: absolute !important;
+        z-index: 20;
+    }
+    .category-row .group:hover .opacity-0 {
+        opacity: 1;
+    }
+`;
+document.head.appendChild(style);
 const originalFilterProducts = filterProducts;
 
 // 25. PRICE RANGE FILTER HANDLERS
@@ -1393,87 +1349,207 @@ function openWhatsApp() {
     window.open(whatsappURL, '_blank');
 }
 let currentSlideIndex = 0;
-        let slideInterval;
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
+let slideInterval;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+
+function showSlide(index) {
+    // Remove active class from all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    // Add active class to current slide and dot
+    slides[index].classList.add('active');
+    dots[index].classList.add('active');
+
+    // Trigger animations by removing and re-adding animation classes
+    const activeSlide = slides[index];
+    const animatedElements = activeSlide.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in-up');
+    animatedElements.forEach(el => {
+        el.style.animation = 'none';
+        el.offsetHeight; // Trigger reflow
+        el.style.animation = null;
+    });
+}
+
+function nextSlide() {
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    showSlide(currentSlideIndex);
+}
+
+function previousSlide() {
+    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+    showSlide(currentSlideIndex);
+}
+
+function goToSlide(index) {
+    currentSlideIndex = index;
+    showSlide(currentSlideIndex);
+    resetAutoPlay();
+}
+
+function startAutoPlay() {
+    slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+}
+
+function resetAutoPlay() {
+    clearInterval(slideInterval);
+    startAutoPlay();
+}
+
+// Start auto-play
+startAutoPlay();
+
+// Pause auto-play on hover
+const carouselContainer = document.querySelector('.carousel-container');
+carouselContainer.addEventListener('mouseenter', () => {
+    clearInterval(slideInterval);
+});
+
+carouselContainer.addEventListener('mouseleave', () => {
+    startAutoPlay();
+});
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+carouselContainer.addEventListener('touchstart', e => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+carouselContainer.addEventListener('touchend', e => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    if (touchEndX < touchStartX - 50) {
+        nextSlide();
+        resetAutoPlay();
+    }
+    if (touchEndX > touchStartX + 50) {
+        previousSlide();
+        resetAutoPlay();
+    }
+}
+function createCategoryRow(category) {
+    const row = document.createElement('div');
+    row.className = 'category-row mb-12';
+    row.dataset.category = category.id;
+
+    const title = document.createElement('h3');
+    title.className = 'text-xl font-bold mb-4 px-4';
+    title.textContent = category.name;
+    row.appendChild(title);
+
+    const scroller = document.createElement('div');
+    scroller.className = 'relative group';
+
+    const container = document.createElement('div');
+    container.className = 'flex overflow-x-auto gap-4 px-4 pb-4 scrollbar-hide';
+    container.dataset.category = category.id;
+    addTouchScrollSupport();
+    // Left scroll button
+    const leftButton = document.createElement('button');
+    leftButton.className = 'absolute left-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full shadow-lg w-10 h-10 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
+    leftButton.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>';
+    leftButton.setAttribute('aria-label', 'Scroll left');
+    leftButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        scrollProducts(category.id, -1);
+    });
+
+    // Right scroll button
+    const rightButton = document.createElement('button');
+    rightButton.className = 'absolute right-2 top-1/2 -translate-y-1/2 bg-white hover:bg-gray-100 rounded-full shadow-lg w-10 h-10 flex items-center justify-center z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300';
+    rightButton.innerHTML = '<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>';
+    rightButton.setAttribute('aria-label', 'Scroll right');
+    rightButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        scrollProducts(category.id, 1);
+    });
+
+    scroller.appendChild(leftButton);
+    scroller.appendChild(container);
+    scroller.appendChild(rightButton);
+    row.appendChild(scroller);
+
+    return row;
+}
+
+function scrollProducts(categoryId, direction) {
+    const container = document.querySelector(`[data-category="${categoryId}"]`);
+    if (!container) return;
+    
+    const scrollAmount = 280; // Width of one card plus gap
+    const currentScroll = container.scrollLeft;
+    const newScrollPosition = currentScroll + (direction * scrollAmount);
+    
+    container.scrollTo({
+        left: newScrollPosition,
+        behavior: 'smooth'
+    });
+}
+function populateProducts(products) {
+    const categoriesContainer = document.getElementById('categories-container');
+    categoriesContainer.innerHTML = '';
+
+    // Group products by category
+    const categories = {};
+    products.forEach(product => {
+        if (!categories[product.category]) {
+            categories[product.category] = {
+                id: product.category.replace(/\s+/g, '-').toLowerCase(),
+                name: product.category,
+                products: []
+            };
+        }
+        categories[product.category].products.push(product);
+    });
+
+    // Create a row for each category
+    Object.values(categories).forEach(category => {
+        const row = createCategoryRow(category);
+        const container = row.querySelector('[data-category="' + category.id + '"]');
+
+        category.products.forEach(product => {
+            const productCard = document.createElement('div');
+            productCard.className = 'flex-shrink-0 w-64 sm:w-72';
+            productCard.innerHTML = createProductCard(product);
+            container.appendChild(productCard);
+        });
+
+        categoriesContainer.appendChild(row);
+    });
+}
+function addTouchScrollSupport() {
+    document.addEventListener('DOMContentLoaded', function() {
+        const containers = document.querySelectorAll('.category-row .flex.overflow-x-auto');
         
-        function showSlide(index) {
-            // Remove active class from all slides and dots
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            // Add active class to current slide and dot
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            
-            // Trigger animations by removing and re-adding animation classes
-            const activeSlide = slides[index];
-            const animatedElements = activeSlide.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in-up');
-            animatedElements.forEach(el => {
-                el.style.animation = 'none';
-                el.offsetHeight; // Trigger reflow
-                el.style.animation = null;
+        containers.forEach(container => {
+            let startX = 0;
+            let scrollLeft = 0;
+            let isDown = false;
+
+            container.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].pageX;
+                scrollLeft = container.scrollLeft;
             });
-        }
-        
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            showSlide(currentSlideIndex);
-        }
-        
-        function previousSlide() {
-            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-            showSlide(currentSlideIndex);
-        }
-        
-        function goToSlide(index) {
-            currentSlideIndex = index;
-            showSlide(currentSlideIndex);
-            resetAutoPlay();
-        }
-        
-        function startAutoPlay() {
-            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-        }
-        
-        function resetAutoPlay() {
-            clearInterval(slideInterval);
-            startAutoPlay();
-        }
-        
-        // Start auto-play
-        startAutoPlay();
-        
-        // Pause auto-play on hover
-        const carouselContainer = document.querySelector('.carousel-container');
-        carouselContainer.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
+
+            container.addEventListener('touchmove', (e) => {
+                if (!startX) return;
+                e.preventDefault();
+                const x = e.touches[0].pageX;
+                const walk = (x - startX) * 2;
+                container.scrollLeft = scrollLeft - walk;
+            });
+
+            container.addEventListener('touchend', () => {
+                startX = 0;
+            });
         });
-        
-        carouselContainer.addEventListener('mouseleave', () => {
-            startAutoPlay();
-        });
-        
-        // Touch/swipe support for mobile
-        let touchStartX = 0;
-        let touchEndX = 0;
-        
-        carouselContainer.addEventListener('touchstart', e => {
-            touchStartX = e.changedTouches[0].screenX;
-        });
-        
-        carouselContainer.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            handleSwipe();
-        });
-        
-        function handleSwipe() {
-            if (touchEndX < touchStartX - 50) {
-                nextSlide();
-                resetAutoPlay();
-            }
-            if (touchEndX > touchStartX + 50) {
-                previousSlide();
-                resetAutoPlay();
-            }
-        }
+    });
+}
