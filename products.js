@@ -8,42 +8,18 @@ const products = [
   // Acrylic Products
   {
     id: 1,
-    name: '1 Pound Cake Box 8*8 Inches',
+    name: 'Cake Box 8*8 Inches',
     category: 'Acrylic Products',
     price: getRandomPrice(800, 1500),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available', // Placeholder for your image URL
+    image: 'pics/cakeBox.jpg', 
     description: 'Acrylic cake box for a 1-pound cake, 8x8 inches.',
-  },
-  {
-    id: 2,
-    name: '2 Pound Cake Box 10*10 Inches',
-    category: 'Acrylic Products',
-    price: getRandomPrice(1200, 2500),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
-    description: 'Acrylic cake box for a 2-pound cake, 10x10 inches.',
-  },
-  {
-    id: 3,
-    name: '3 Pound Cake Box 12*12 Inches',
-    category: 'Acrylic Products',
-    price: getRandomPrice(1800, 3500),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
-    description: 'Acrylic cake box for a 3-pound cake, 12x12 inches.',
-  },
-  {
-    id: 4,
-    name: '5 Pound Cake Box 14*14 Inches',
-    category: 'Acrylic Products',
-    price: getRandomPrice(2500, 5000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
-    description: 'Acrylic cake box for a 5-pound cake, 14x14 inches.',
   },
   {
     id: 5,
     name: 'Wedding Bid Boxes',
     category: 'Acrylic Products',
     price: getRandomPrice(3000, 8000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\bidBox.jpg',
     description: 'Elegant acrylic boxes for wedding bids.',
   },
   {
@@ -51,7 +27,7 @@ const products = [
     name: 'Wedding Favor Boxes',
     category: 'Acrylic Products',
     price: getRandomPrice(500, 1500),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\favorBox.jpg',
     description: 'Small acrylic boxes for wedding favors.',
   },
   {
@@ -59,7 +35,7 @@ const products = [
     name: 'Customized Size Box',
     category: 'Acrylic Products',
     price: getRandomPrice(1500, 10000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\box.jpg_.webp',
     description: 'Acrylic box with custom dimensions and design.',
   },
   {
@@ -67,7 +43,7 @@ const products = [
     name: 'Gift Bag',
     category: 'Acrylic Products',
     price: getRandomPrice(300, 800),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\giftBox.jpg',
     description: 'Stylish acrylic gift bag for various occasions.',
   },
   {
@@ -75,7 +51,7 @@ const products = [
     name: 'Bangles Box',
     category: 'Acrylic Products',
     price: getRandomPrice(1000, 3000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\bangleBox.jpg',
     description: 'Acrylic box designed to store bangles.',
   },
   {
@@ -83,7 +59,7 @@ const products = [
     name: 'Quran Pak Box',
     category: 'Acrylic Products',
     price: getRandomPrice(2000, 6000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\blackquranbox1.jpg',
     description: 'Decorative acrylic box for the Quran Pak.',
   },
 
@@ -169,7 +145,7 @@ const products = [
     name: 'Personalized Nikkah Namah Frame',
     category: 'Personalized Nikkah Namas',
     price: getRandomPrice(5000, 15000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\frame.jpg',
     description: 'Beautifully framed and personalized Nikkah Namah.',
   },
   {
@@ -187,7 +163,7 @@ const products = [
     name: 'Customized Bride Dupata with Dua’s',
     category: 'Customized Bride Dupata',
     price: getRandomPrice(8000, 25000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\dua Dupatta.jpg',
     description: 'Bridal dupatta customized with sacred duas.',
   },
   {
@@ -195,7 +171,7 @@ const products = [
     name: 'Customized Bride Dupata with Groom Name',
     category: 'Customized Bride Dupata',
     price: getRandomPrice(10000, 30000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\dupatta.png',
     description: 'Bridal dupatta customized with the groom’s name.',
   },
   
@@ -205,7 +181,7 @@ const products = [
     name: 'Acrylic Umrah Tabarak Box',
     category: 'Tabarak Boxes',
     price: getRandomPrice(1500, 5000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\ummrah Box.jpg',
     description: 'Acrylic box for Umrah souvenirs.',
   },
   {
@@ -213,7 +189,7 @@ const products = [
     name: 'Cardboard Umrah Tabarak Box',
     category: 'Tabarak Boxes',
     price: getRandomPrice(800, 2000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\ummrah card.jpg',
     description: 'Cardboard box for Umrah souvenirs.',
   },
   {
@@ -221,7 +197,7 @@ const products = [
     name: 'Umrah Tabarak Bags',
     category: 'Tabarak Boxes',
     price: getRandomPrice(500, 1500),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\carboard box.jpg',
     description: 'Special bags for Umrah souvenirs.',
   },
 

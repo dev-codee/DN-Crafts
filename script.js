@@ -303,14 +303,14 @@ function createProductCard(product) {
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
                     </div>
                     <div class="p-3 sm:p-4">
-                        <p class="text-xs sm:text-sm text-blue-600 font-medium mb-1">${product.category}</p>
+                        <p class="text-xs sm:text-sm text-yellow-600 font-medium mb-1">${product.category}</p>
                         <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2 leading-tight">${product.name}</h3>
                         <p class="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed">${product.description}</p>
                         <div class="flex justify-between items-center">
                             <p class="text-lg sm:text-xl font-bold text-gray-900">${formatPrice(product.price)}</p>
                             <button
                                 onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                                class="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
+                                class="bg-yellow-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-yellow-700 transition-colors duration-300 transform hover:scale-105"
                             >
                                 Add to Cart
                             </button>
@@ -358,7 +358,7 @@ function renderCategories() {
                 <button
                     onclick="selectCategory('${category}')"
                     class="px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors duration-300 ${selectedCategory === category
-            ? 'bg-blue-600 text-white'
+            ? 'bg-yellow-600 text-white'
             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
         }"
                 >
@@ -566,10 +566,10 @@ function updateSortButtons() {
     const sortButtons = document.querySelectorAll('.sort-button');
     sortButtons.forEach(button => {
         if (button.dataset.sort === currentSort) {
-            button.classList.add('bg-blue-600', 'text-white');
+            button.classList.add('bg-yellow-600', 'text-white');
             button.classList.remove('bg-gray-100', 'text-gray-700');
         } else {
-            button.classList.remove('bg-blue-600', 'text-white');
+            button.classList.remove('bg-yellow-600', 'text-white');
             button.classList.add('bg-gray-100', 'text-gray-700');
         }
     });
@@ -740,7 +740,7 @@ function updateSavedItemsDisplay() {
             </div>
             <button 
                 onclick="moveToCart(${item.id})"
-                class="text-blue-600 text-xs hover:underline"
+                class="text-yellow-600 text-xs hover:underline"
             >Move to Cart</button>
         </div>
     `).join('');
@@ -881,7 +881,7 @@ function updateRecentlyViewedDisplay() {
                 <div class="bg-white rounded-lg shadow p-3">
                     <img src="${product.image}" alt="${product.name}" class="w-full h-24 object-cover rounded mb-2" />
                     <h4 class="text-sm font-medium truncate">${product.name}</h4>
-                    <p class="text-sm text-blue-600 font-semibold">$${formatPrice(product.price)}</p>
+                    <p class="text-sm text-yellow-600 font-semibold">$${formatPrice(product.price)}</p>
                 </div>
             `).join('')}
         </div>
@@ -925,7 +925,7 @@ function showLoading(elementId) {
     if (element) {
         element.innerHTML = `
             <div class="flex items-center justify-center py-8">
-                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-yellow-600"></div>
                 <span class="ml-2 text-gray-600">Loading...</span>
             </div>
         `;
@@ -942,7 +942,7 @@ function hideLoading(elementId, content) {
 // 14. TOAST NOTIFICATIONS
 function showToast(message, type = 'success') {
     const toast = document.createElement('div');
-    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white transform transition-all duration-300 translate-x-full ${type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-blue-600'
+    toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white transform transition-all duration-300 translate-x-full ${type === 'success' ? 'bg-green-600' : type === 'error' ? 'bg-red-600' : 'bg-yellow-600'
         }`;
     toast.textContent = message;
 
@@ -1064,7 +1064,7 @@ function updateWishlistSidebar() {
                     <p class="text-sm text-gray-500">$${formatPrice(item.price)}</p>
                 </div>
                 <div class="flex flex-col space-y-2">
-                    <button onclick="addToCart(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="bg-blue-600 text-white px-3 py-1 rounded text-xs hover:bg-blue-700 transition-colors">
+                    <button onclick="addToCart(${JSON.stringify(item).replace(/"/g, '&quot;')})" class="bg-yellow-600 text-white px-3 py-1 rounded text-xs hover:bg-yellow-700 transition-colors">
                         Add to Cart
                     </button>
                     <button onclick="removeFromWishlist(${item.id})" class="text-red-600 text-xs hover:underline">
@@ -1262,14 +1262,14 @@ function createProductCard(product) {
                 <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
             </div>
             <div class="p-2 sm:p-3 md:p-4">
-                <p class="text-xs text-blue-600 font-medium mb-1">${product.category}</p>
+                <p class="text-xs text-yellow-600 font-medium mb-1">${product.category}</p>
                 <h3 class="text-sm sm:text-base md:text-lg font-semibold text-gray-800 mb-1 sm:mb-2 leading-tight line-clamp-2">${product.name}</h3>
                 <p class="text-xs sm:text-sm text-gray-600 mb-2 sm:mb-3 leading-relaxed line-clamp-2">${product.description}</p>
                 <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                     <p class="text-base sm:text-lg md:text-xl font-bold text-gray-900">${formatPrice(product.price)} pkr</p>
                     <button
                         onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                        class="bg-blue-600 text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105 w-full sm:w-auto"
+                        class="bg-yellow-600 text-white px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-yellow-700 transition-colors duration-300 transform hover:scale-105 w-full sm:w-auto"
                     >
                         Add to Cart
                     </button>
