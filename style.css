@@ -151,6 +151,41 @@
      }
  }
 
+ .black-line {
+     background-color: black;
+     width: 100%;
+     padding: 10px 0;
+     overflow: hidden;
+     /* This is crucial to hide the text when it's off-screen */
+     white-space: nowrap;
+     /* Prevents the text from wrapping to the next line */
+     box-sizing: border-box;
+ }
+
+ /* The text itself */
+ .moving-text-modern {
+     color: white;
+     font-size: 18px;
+     font-family: 'Arial', sans-serif;
+     display: inline-block;
+     /* Makes the animation work properly */
+     animation: scroll-left 20s linear infinite;
+     /* Applies the animation */
+ }
+
+ /* The keyframe animation */
+ @keyframes scroll-left {
+     0% {
+         transform: translateX(100%);
+         /* Starts the text off-screen to the right */
+     }
+
+     100% {
+         transform: translateX(-100%);
+         /* Ends the text off-screen to the left */
+     }
+ }
+
  /* The text itself */
  .moving-text-modern {
      color: white;
