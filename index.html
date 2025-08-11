@@ -747,75 +747,88 @@
     </header>
 
     <!-- Main Content with proper semantic structure -->
-    <main id="main-content" role="main" itemscope itemtype="https://schema.org/WebPage">
+     <main id="main-content" role="main" itemscope itemtype="https://schema.org/WebPage">
         <!-- Hero Carousel Section -->
         <section
-            class="carousel-container relative mx-3 sm:mx-4 my-4 sm:my-6 md:my-8 md:mx-auto md:max-w-7xl h-[300px] sm:h-[350px] md:h-[400px] lg:h-[400px]"
+            class="carousel-container relative mx-auto my-4 sm:my-6 md:my-8 max-w-7xl h-[250px] sm:h-[300px] md:h-[400px] lg:h-[450px]"
             role="region" aria-labelledby="hero-title" itemscope itemtype="https://schema.org/ImageGallery">
             <h2 id="hero-title" class="sr-only">Featured Products and Services</h2>
 
-            <!-- Slide 1 -->
+            <!-- Slide 1 - High quality placeholder -->
             <div class="carousel-slide active"
-                style="background-image: url('pics\\Ban1.png');">
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="carousel-slide"
-                style="background-image: url('https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available');">
-            </div>
-
-            <!-- Slide 3 -->
-             <div class="carousel-slide"
-                style="background-image: url('https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available');">
-            </div>
-
-            <!-- Slide 4 -->
-            <div class="carousel-slide"
-                style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80');"
-                itemscope itemtype="https://schema.org/ImageObject">
+                style="background-image: url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"
+                data-slide="1">
                 <div class="carousel-content">
-                    <div class="container mx-auto px-6 sm:px-8 lg:px-12">
-                        <div class="max-w-2xl text-white">
-                            <h3 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4 slide-in-left"
-                                itemprop="name">
-                                Personalized Gifts
-                            </h3>
-                            <p class="text-lg sm:text-xl md:text-2xl mb-6 slide-in-left" style="animation-delay: 0.2s;"
-                                itemprop="description">
-                                Make it uniquely yours
-                            </p>
-                            <p class="text-sm sm:text-base md:text-lg mb-8 opacity-90 fade-in-up">
-                                Add names, dates, or special messages to create one-of-a-kind gifts that will be
-                                treasured forever.
-                            </p>
-                            <button
-                                class="bg-purple-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full text-base sm:text-lg font-semibold hover:bg-purple-700 transition-all duration-300 inline-flex items-center transform hover:scale-105 fade-in-up">
-                                Customize Now
-                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    aria-hidden="true">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="m9 5 7 7-7 7"></path>
-                                </svg>
-                            </button>
+                    <div class="container mx-auto px-6 sm:px-8 md:px-12">
+                        <div class="text-white max-w-2xl">
+                            <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Premium Products</h3>
+                            <p class="text-base sm:text-lg md:text-xl opacity-90">Discover our exclusive collection</p>
                         </div>
                     </div>
                 </div>
-                <meta itemprop="url" content="https://images.unsplash.com/photo-1578662996442-48f60103fc96">
             </div>
 
-            <!-- Carousel Navigation -->
-            <button class="carousel-nav prev" onclick="previousSlide()" aria-label="Previous slide">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            <!-- Slide 2 - Business/Office theme -->
+            <div class="carousel-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2069&q=80');"
+                data-slide="2">
+                <div class="carousel-content">
+                    <div class="container mx-auto px-6 sm:px-8 md:px-12">
+                        <div class="text-white max-w-2xl">
+                            <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Professional Services</h3>
+                            <p class="text-base sm:text-lg md:text-xl opacity-90">Excellence in every detail</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 - Modern tech theme -->
+            <div class="carousel-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2072&q=80');"
+                data-slide="3">
+                <div class="carousel-content">
+                    <div class="container mx-auto px-6 sm:px-8 md:px-12">
+                        <div class="text-white max-w-2xl">
+                            <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Innovation</h3>
+                            <p class="text-base sm:text-lg md:text-xl opacity-90">Leading the future forward</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 - Architecture/Design theme -->
+            <div class="carousel-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');"
+                data-slide="4">
+                <div class="carousel-content">
+                    <div class="container mx-auto px-6 sm:px-8 md:px-12">
+                        <div class="text-white max-w-2xl">
+                            <h3 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Design Excellence</h3>
+                            <p class="text-base sm:text-lg md:text-xl opacity-90">Where form meets function</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation arrows -->
+            <button class="carousel-nav prev" onclick="changeSlide(-1)" aria-label="Previous slide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
-            <button class="carousel-nav next" onclick="nextSlide()" aria-label="Next slide">
-                <svg class="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            <button class="carousel-nav next" onclick="changeSlide(1)" aria-label="Next slide">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>
             </button>
+
+            <!-- Dots indicator -->
+            <div class="carousel-dots">
+                <button class="carousel-dot active" onclick="goToSlide(0)" aria-label="Go to slide 1"></button>
+                <button class="carousel-dot" onclick="goToSlide(1)" aria-label="Go to slide 2"></button>
+                <button class="carousel-dot" onclick="goToSlide(2)" aria-label="Go to slide 3"></button>
+                <button class="carousel-dot" onclick="goToSlide(3)" aria-label="Go to slide 4"></button>
+            </div>
         </section>
 
         <!-- Products Section -->

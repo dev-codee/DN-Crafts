@@ -57,6 +57,125 @@ const elements = {
     mobileMenuToggle: document.getElementById('mobile-menu-toggle'),
     mobileMenu: document.getElementById('mobile-menu')
 };
+let currentSlide = 0;
+const slides = document.querySelectorAll('.carousel-slide');
+const dots = document.querySelectorAll('.carousel-dot');
+const totalSlides = slides.length;
+let autoSlideInterval;
+
+// Preload images for better performance
+function preloadImages() {
+    slides.forEach(slide => {
+        const bgImage = slide.style.backgroundImage;
+        if (bgImage) {
+            const url = bgImage.slice(4, -1).replace(/"/g, "");
+            const img = new Image();
+            img.src = url;
+        }
+    });
+}
+
+function updateSlide() {
+    // Remove active class from all slides and dots
+    slides.forEach(slide => slide.classList.remove('active'));
+    dots.forEach(dot => dot.classList.remove('active'));
+
+    // Add active class to current slide and dot
+    slides[currentSlide].classList.add('active');
+    dots[currentSlide].classList.add('active');
+}
+
+function changeSlide(direction) {
+    currentSlide += direction;
+
+    if (currentSlide >= totalSlides) {
+        currentSlide = 0;
+    } else if (currentSlide < 0) {
+        currentSlide = totalSlides - 1;
+    }
+
+    updateSlide();
+    resetAutoSlide();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateSlide();
+    resetAutoSlide();
+}
+
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        changeSlide(1);
+    }, 5000); // Change slide every 5 seconds
+}
+
+function resetAutoSlide() {
+    clearInterval(autoSlideInterval);
+    startAutoSlide();
+}
+
+// Touch/swipe support for mobile
+let touchStartX = 0;
+let touchEndX = 0;
+
+
+const carousel = document.querySelector('.carousel-container');
+
+carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+});
+
+carousel.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+});
+
+function handleSwipe() {
+    const swipeThreshold = 50;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > swipeThreshold) {
+        if (diff > 0) {
+            changeSlide(1); // Swipe left - next slide
+        } else {
+            changeSlide(-1); // Swipe right - previous slide
+        }
+    }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') {
+        changeSlide(-1);
+    } else if (e.key === 'ArrowRight') {
+        changeSlide(1);
+    }
+});
+
+// Pause auto-slide on hover (desktop only)
+carousel.addEventListener('mouseenter', () => {
+    clearInterval(autoSlideInterval);
+});
+
+carousel.addEventListener('mouseleave', () => {
+    startAutoSlide();
+});
+
+// Initialize carousel
+document.addEventListener('DOMContentLoaded', () => {
+    preloadImages();
+    startAutoSlide();
+});
+
+// Pause auto-slide when page is not visible
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+        clearInterval(autoSlideInterval);
+    } else {
+        startAutoSlide();
+    }
+});
 // Utility Functions
 function formatPrice(price) {
     return `${price.toFixed(2)}`;
@@ -291,33 +410,105 @@ function handleEmailOrder() {
 
 // Product Display Functions
 function createProductCard(product) {
+    const stockInfo = getStockStatus(product.id);
+    const isWishlisted = isInWishlist(product.id);
+    const avgRating = getAverageRating(product.id);
+
     return `
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
-                    <div class="relative overflow-hidden">
-                        <img
-                            src="${product.image}"
-                            alt="${product.name}"
-                            class="w-full h-48 sm:h-56 md:h-64 lg:h-72 object-cover object-center group-hover:scale-105 transition-transform duration-300"
-                            onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"
-                        />
-                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group relative">
+            <!-- Wishlist Heart -->
+            <button 
+                onclick="toggleWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})"
+                class="absolute top-3 right-3 z-10 p-2 rounded-full ${isWishlisted ? 'text-red-500 bg-white' : 'text-gray-400 bg-white'} shadow-md hover:scale-110 transition-all"
+            >
+                <svg class="w-5 h-5" fill="${isWishlisted ? 'currentColor' : 'none'}" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.682l-1.318-1.364a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+            </button>
+            
+            <!-- Stock Badge -->
+            ${stockInfo.status === 'out-of-stock' ?
+            '<div class="absolute top-3 left-3 bg-red-600 text-white px-2 py-1 rounded text-xs font-medium">Out of Stock</div>' :
+            stockInfo.status === 'low-stock' ?
+                '<div class="absolute top-3 left-3 bg-orange-600 text-white px-2 py-1 rounded text-xs font-medium">Low Stock</div>' : ''
+        }
+            
+            <div class="relative overflow-hidden cursor-pointer" onclick="openImageZoom('${product.image}')">
+                <img
+                    src="${product.image}"
+                    alt="${product.name}"
+
+@@ -1295,77 +1283,45 @@ function createProductCard(product) {
+                    onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"
+                />
+                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
+                
+                <!-- Quick View Button -->
+                <button 
+                    onclick="event.stopPropagation(); openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})"
+                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300"
+                >
+                    <span class="bg-white text-gray-900 px-4 py-2 rounded-full font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 transform group-hover:scale-105">
+                        Quick View
+                    </span>
+                </button>
+            </div>
+            
+            <div class="p-3 sm:p-4">
+                <div class="flex justify-between items-start mb-2">
+                    <p class="text-xs sm:text-sm text-blue-600 font-medium">${product.category}</p>
+                    <button 
+                        onclick="addToComparison(${JSON.stringify(product).replace(/"/g, '&quot;')})"
+                        class="text-gray-400 hover:text-blue-600 transition-colors"
+                        title="Add to Compare"
+                    >
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2 leading-tight cursor-pointer hover:text-blue-600 transition-colors" onclick="addToRecentlyViewed(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+                    ${product.name}
+                </h3>
+                
+                <!-- Rating -->
+                <div class="flex items-center mb-2">
+                    <div class="flex text-yellow-400 text-sm mr-2">
+                        ${Array(5).fill().map((_, i) =>
+            `<span class="${i < Math.floor(avgRating) ? 'text-yellow-400' : 'text-gray-300'}">★</span>`
+        ).join('')}
                     </div>
-                    <div class="p-3 sm:p-4">
-                        <p class="text-xs sm:text-sm text-yellow-600 font-medium mb-1">${product.category}</p>
-                        <h3 class="text-base sm:text-lg font-semibold text-gray-800 mb-2 leading-tight">${product.name}</h3>
-                        <p class="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed">${product.description}</p>
-                        <div class="flex justify-between items-center">
-                            <p class="text-lg sm:text-xl font-bold text-gray-900">${formatPrice(product.price)}</p>
+                    <span class="text-xs text-gray-500">(${avgRating || '0.0'})</span>
+                    <button onclick="openReviewsModal(${product.id})" class="text-xs text-blue-600 hover:underline ml-2">
+                        Reviews
+                    </button>
+                </div>
+                
+                <p class="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed">${product.description}</p>
+                
+                <!-- Stock Status -->
+                <p class="text-xs ${stockInfo.class} mb-2 font-medium">${stockInfo.text}</p>
+                
+                <div class="flex justify-between items-center">
+                    <p class="text-lg sm:text-xl font-bold text-gray-900">${formatPrice(product.price)} pkr</p>
+                    
+                    ${stockInfo.status === 'out-of-stock' ?
+            '<button class="bg-gray-400 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium cursor-not-allowed" disabled>Out of Stock</button>' :
+            `<div class="flex items-center space-x-2">
+                            ${createQuantitySelector(product.id)}
                             <button
-                                onclick="addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                                class="bg-yellow-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-yellow-700 transition-colors duration-300 transform hover:scale-105"
+                                onclick="addToCartWithQuantity(${JSON.stringify(product).replace(/"/g, '&quot;')})"
+                                class="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium hover:bg-blue-700 transition-colors duration-300 transform hover:scale-105"
                             >
                                 Add to Cart
                             </button>
-                        </div>
-                    </div>
+                        </div>`
+        }
                 </div>
-            `;
+            </div>
+        </div>
+    `;
 }
 
 
@@ -339,7 +530,7 @@ function filterProducts() {
 // Update the renderProducts function
 function renderProducts() {
     let filteredProducts = filterProducts();
-    
+
     // Apply sorting
     filteredProducts = getSortedProducts(filteredProducts);
 
@@ -1338,91 +1529,6 @@ function openWhatsApp() {
     // Open WhatsApp
     window.open(whatsappURL, '_blank');
 }
-let currentSlideIndex = 0;
-let slideInterval;
-const slides = document.querySelectorAll('.carousel-slide');
-const dots = document.querySelectorAll('.carousel-dot');
-
-function showSlide(index) {
-    // Remove active class from all slides and dots
-    slides.forEach(slide => slide.classList.remove('active'));
-    dots.forEach(dot => dot.classList.remove('active'));
-
-    // Add active class to current slide and dot
-    slides[index].classList.add('active');
-    dots[index].classList.add('active');
-
-    // Trigger animations by removing and re-adding animation classes
-    const activeSlide = slides[index];
-    const animatedElements = activeSlide.querySelectorAll('.slide-in-left, .slide-in-right, .fade-in-up');
-    animatedElements.forEach(el => {
-        el.style.animation = 'none';
-        el.offsetHeight; // Trigger reflow
-        el.style.animation = null;
-    });
-}
-
-function nextSlide() {
-    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-    showSlide(currentSlideIndex);
-}
-
-function previousSlide() {
-    currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
-    showSlide(currentSlideIndex);
-}
-
-function goToSlide(index) {
-    currentSlideIndex = index;
-    showSlide(currentSlideIndex);
-    resetAutoPlay();
-}
-
-function startAutoPlay() {
-    slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-}
-
-function resetAutoPlay() {
-    clearInterval(slideInterval);
-    startAutoPlay();
-}
-
-// Start auto-play
-startAutoPlay();
-
-// Pause auto-play on hover
-const carouselContainer = document.querySelector('.carousel-container');
-carouselContainer.addEventListener('mouseenter', () => {
-    clearInterval(slideInterval);
-});
-
-carouselContainer.addEventListener('mouseleave', () => {
-    startAutoPlay();
-});
-
-// Touch/swipe support for mobile
-let touchStartX = 0;
-let touchEndX = 0;
-
-carouselContainer.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-carouselContainer.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    if (touchEndX < touchStartX - 50) {
-        nextSlide();
-        resetAutoPlay();
-    }
-    if (touchEndX > touchStartX + 50) {
-        previousSlide();
-        resetAutoPlay();
-    }
-}
 function createCategoryRow(category) {
     const row = document.createElement('div');
     row.className = 'category-row mb-8 sm:mb-12';
@@ -1482,11 +1588,11 @@ function createCategoryRow(category) {
 function scrollProducts(categoryId, direction) {
     const container = document.querySelector(`[data-category="${categoryId}"]`);
     if (!container) return;
-    
+
     // Responsive scroll amounts based on screen size
     const isMobile = window.innerWidth < 640;
     const isTablet = window.innerWidth < 1024;
-    
+
     let scrollAmount;
     if (isMobile) {
         scrollAmount = 200; // Mobile card width + gap
@@ -1495,10 +1601,10 @@ function scrollProducts(categoryId, direction) {
     } else {
         scrollAmount = 280; // Desktop card width + gap
     }
-    
+
     const currentScroll = container.scrollLeft;
     const newScrollPosition = currentScroll + (direction * scrollAmount);
-    
+
     container.scrollTo({
         left: newScrollPosition,
         behavior: 'smooth'
@@ -1510,7 +1616,7 @@ function populateProducts(products) {
         console.error('Categories container not found');
         return;
     }
-    
+
     categoriesContainer.innerHTML = '';
 
     // Group products by category
@@ -1545,9 +1651,9 @@ function populateProducts(products) {
     });
 }
 function addTouchScrollSupport() {
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', function () {
         const containers = document.querySelectorAll('.category-row [data-category]');
-        
+
         containers.forEach(container => {
             let startX = 0;
             let scrollLeft = 0;
@@ -1561,10 +1667,10 @@ function addTouchScrollSupport() {
 
             container.addEventListener('touchmove', (e) => {
                 if (!startX) return;
-                
+
                 const x = e.touches[0].pageX;
                 const walk = (startX - x) * 1.5; // Adjust sensitivity
-                
+
                 if (Math.abs(walk) > 5) {
                     isScrolling = true;
                     container.scrollLeft = scrollLeft + walk;

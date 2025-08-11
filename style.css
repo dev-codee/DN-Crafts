@@ -140,8 +140,14 @@
        .carousel-container {
            position: relative;
            overflow: hidden;
-           border-radius: 24px;
-           /* height: 400px; <--- This was commented out in original CSS, good! */
+           border-radius: 16px;
+           /* Responsive border radius */
+       }
+
+       @media (min-width: 768px) {
+           .carousel-container {
+               border-radius: 24px;
+           }
        }
 
        .carousel-slide {
@@ -155,6 +161,9 @@
            background-size: cover;
            background-position: center;
            background-repeat: no-repeat;
+           /* Improved image rendering */
+           image-rendering: -webkit-optimize-contrast;
+           image-rendering: crisp-edges;
        }
 
        .carousel-slide.active {
@@ -168,7 +177,7 @@
            left: 0;
            right: 0;
            bottom: 0;
-           background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.2) 100%);
+           background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
        }
 
        .carousel-content {
@@ -183,10 +192,10 @@
            position: absolute;
            top: 50%;
            transform: translateY(-50%);
-           background: rgba(255, 255, 255, 0.9);
+           background: rgba(255, 255, 255, 0.95);
            border: none;
-           width: 50px;
-           height: 50px;
+           width: 40px;
+           height: 40px;
            border-radius: 50%;
            display: flex;
            align-items: center;
@@ -194,50 +203,123 @@
            cursor: pointer;
            transition: all 0.3s ease;
            z-index: 20;
-           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+           backdrop-filter: blur(10px);
+       }
+
+       /* Larger nav buttons on desktop */
+       @media (min-width: 768px) {
+           .carousel-nav {
+               width: 50px;
+               height: 50px;
+           }
        }
 
        .carousel-nav:hover {
            background: white;
            transform: translateY(-50%) scale(1.1);
-           box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+           box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+       }
+
+       .carousel-nav:active {
+           transform: translateY(-50%) scale(0.95);
        }
 
        .carousel-nav.prev {
-           left: 20px;
+           left: 10px;
        }
 
        .carousel-nav.next {
-           right: 20px;
+           right: 10px;
+       }
+
+       /* Better spacing on larger screens */
+       @media (min-width: 768px) {
+           .carousel-nav.prev {
+               left: 20px;
+           }
+
+           .carousel-nav.next {
+               right: 20px;
+           }
        }
 
        .carousel-dots {
            position: absolute;
-           bottom: 20px;
+           bottom: 15px;
            left: 50%;
            transform: translateX(-50%);
            display: flex;
-           gap: 10px;
+           gap: 8px;
            z-index: 20;
        }
 
+       @media (min-width: 768px) {
+           .carousel-dots {
+               bottom: 20px;
+               gap: 10px;
+           }
+       }
+
        .carousel-dot {
-           width: 12px;
-           height: 12px;
+           width: 10px;
+           height: 10px;
            border-radius: 50%;
-           background: rgba(255, 255, 255, 0.5);
+           background: rgba(255, 255, 255, 0.6);
            cursor: pointer;
            transition: all 0.3s ease;
            border: 2px solid transparent;
+           backdrop-filter: blur(5px);
+       }
+
+       @media (min-width: 768px) {
+           .carousel-dot {
+               width: 12px;
+               height: 12px;
+           }
        }
 
        .carousel-dot.active {
            background: #DAA520;
            border-color: white;
+           transform: scale(1.2);
        }
 
        .carousel-dot:hover {
-           background: rgba(255, 255, 255, 0.8);
+           background: rgba(255, 255, 255, 0.9);
+       }
+
+       /* Touch-friendly improvements */
+       .carousel-nav,
+       .carousel-dot {
+           -webkit-tap-highlight-color: transparent;
+           touch-action: manipulation;
+       }
+
+       /* Smooth scrolling for better UX */
+       html {
+           scroll-behavior: smooth;
+       }
+
+       /* Loading state for images */
+       .carousel-slide[data-loading="true"]::after {
+           content: '';
+           position: absolute;
+           top: 50%;
+           left: 50%;
+           width: 40px;
+           height: 40px;
+           margin: -20px 0 0 -20px;
+           border: 3px solid rgba(255, 255, 255, 0.3);
+           border-top-color: #DAA520;
+           border-radius: 50%;
+           animation: spin 1s linear infinite;
+       }
+
+       @keyframes spin {
+           to {
+               transform: rotate(360deg);
+           }
        }
 
        /* Text animations */
@@ -380,5 +462,3 @@
            flex: 0 0 auto;
            width: 200px;
        }
-
-       
