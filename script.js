@@ -1,11 +1,11 @@
 const categories = [
     'All',
-    'Acrylic Products',
+    'Tabarak Boxes',
     'Invitation Cards',
     'Favor Boxes',
     'Personalized Nikkah Namas',
     'Customized Bride Dupata',
-    'Tabarak Boxes',
+    'Acrylic Products',
     'Occasion Gifts',
     'Flower Bouquets',
     'Gift Baskets',

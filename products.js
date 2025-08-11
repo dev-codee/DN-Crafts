@@ -8,6 +8,30 @@ const products = [
   // Acrylic Products
   {
     id: 1,
+    name: 'Acrylic Umrah Tabarak Box',
+    category: 'Tabarak Boxes',
+    price: getRandomPrice(1500, 5000),
+    image: 'pics\\ummrah Box.jpg',
+    description: 'Acrylic box for Umrah souvenirs.',
+  },
+  {
+    id: 2,
+    name: 'Cardboard Umrah Tabarak Box',
+    category: 'Tabarak Boxes',
+    price: getRandomPrice(800, 2000),
+    image: 'pics\\ummrah card.jpg',
+    description: 'Cardboard box for Umrah souvenirs.',
+  },
+  {
+    id: 3,
+    name: 'Umrah Tabarak Bags',
+    category: 'Tabarak Boxes',
+    price: getRandomPrice(500, 1500),
+    image: 'pics\\carboard box.jpg',
+    description: 'Special bags for Umrah souvenirs.',
+  },
+  {
+    id: 24,
     name: 'Cake Box 8*8 Inches',
     category: 'Acrylic Products',
     price: getRandomPrice(800, 1500),
@@ -15,7 +39,7 @@ const products = [
     description: 'Acrylic cake box for a 1-pound cake, 8x8 inches.',
   },
   {
-    id: 5,
+    id: 25,
     name: 'Wedding Bid Boxes',
     category: 'Acrylic Products',
     price: getRandomPrice(3000, 8000),
@@ -23,7 +47,7 @@ const products = [
     description: 'Elegant acrylic boxes for wedding bids.',
   },
   {
-    id: 6,
+    id: 26,
     name: 'Wedding Favor Boxes',
     category: 'Acrylic Products',
     price: getRandomPrice(500, 1500),
@@ -62,10 +86,25 @@ const products = [
     image: 'pics\\blackquranbox1.jpg',
     description: 'Decorative acrylic box for the Quran Pak.',
   },
-
-  // Invitation Cards
   {
     id: 11,
+    name: 'Personalized Nikkah Namah Frame',
+    category: 'Personalized Nikkah Namas',
+    price: getRandomPrice(5000, 15000),
+    image: 'pics\\frame.jpg',
+    description: 'Beautifully framed and personalized Nikkah Namah.',
+  },
+  {
+    id: 12,
+    name: 'Customized Nikkah Namah Frame',
+    category: 'Personalized Nikkah Namas',
+    price: getRandomPrice(7000, 20000),
+    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    description: 'Fully customized Nikkah Namah frame with unique designs.',
+  },
+  // Invitation Cards
+  {
+    id: 20,
     name: 'Luxury Acrylic Box Wedding Invite',
     category: 'Invitation Cards',
     price: getRandomPrice(4000, 12000),
@@ -73,7 +112,7 @@ const products = [
     description: 'Premium wedding invitation card in a luxurious acrylic box.',
   },
   {
-    id: 12,
+    id: 21,
     name: 'Simple Acrylic Box Wedding Invite',
     category: 'Invitation Cards',
     price: getRandomPrice(2000, 7000),
@@ -140,22 +179,7 @@ const products = [
   },
   
   // Personalized Nikkah Namas
-  {
-    id: 20,
-    name: 'Personalized Nikkah Namah Frame',
-    category: 'Personalized Nikkah Namas',
-    price: getRandomPrice(5000, 15000),
-    image: 'pics\\frame.jpg',
-    description: 'Beautifully framed and personalized Nikkah Namah.',
-  },
-  {
-    id: 21,
-    name: 'Customized Nikkah Namah Frame',
-    category: 'Personalized Nikkah Namas',
-    price: getRandomPrice(7000, 20000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
-    description: 'Fully customized Nikkah Namah frame with unique designs.',
-  },
+  
   
   // Customized Bride Dupata
   {
@@ -176,30 +200,7 @@ const products = [
   },
   
   // Tabarak Boxes
-  {
-    id: 24,
-    name: 'Acrylic Umrah Tabarak Box',
-    category: 'Tabarak Boxes',
-    price: getRandomPrice(1500, 5000),
-    image: 'pics\\ummrah Box.jpg',
-    description: 'Acrylic box for Umrah souvenirs.',
-  },
-  {
-    id: 25,
-    name: 'Cardboard Umrah Tabarak Box',
-    category: 'Tabarak Boxes',
-    price: getRandomPrice(800, 2000),
-    image: 'pics\\ummrah card.jpg',
-    description: 'Cardboard box for Umrah souvenirs.',
-  },
-  {
-    id: 26,
-    name: 'Umrah Tabarak Bags',
-    category: 'Tabarak Boxes',
-    price: getRandomPrice(500, 1500),
-    image: 'pics\\carboard box.jpg',
-    description: 'Special bags for Umrah souvenirs.',
-  },
+  
 
   // Occasion Gifts
   {

@@ -1,464 +1,566 @@
-       /* Container to align icons */
-       .social-icons-container {
-           display: flex;
-           gap: 1rem;
-           /* Space between icons */
-           align-items: center;
-       }
-
-       /* Base styling for each icon container */
-       .social-icon {
-           width: 35px;
-           height: 35px;
-           display: flex;
-           justify-content: center;
-           align-items: center;
-           border: 2px solid #FFC107;
-           /* A shade of yellow */
-           border-radius: 50%;
-           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-       }
-
-       /* Styling the icons (the font awesome 'i' tags) */
-       .social-icon i {
-           font-size: 24px;
-           color: #FFC107;
-           /* Match the border color */
-       }
-
-       /* Hover effect */
-       .social-icon:hover {
-           background-color: #FFC107;
-           /* Fill the background with yellow */
-       }
-
-       .social-icon:hover i {
-           color: #fff;
-           /* Change the icon color to white on hover */
-       }
-
-       /* Container for the black line */
-       .black-line {
-           background-color: black;
-           width: 100%;
-           padding: 10px 0;
-           overflow: hidden;
-           /* This is crucial to hide the text when it's off-screen */
-           white-space: nowrap;
-           /* Prevents the text from wrapping to the next line */
-           box-sizing: border-box;
-       }
-
-       /* The text itself */
-       .moving-text-modern {
-           color: white;
-           font-size: 18px;
-           font-family: 'Arial', sans-serif;
-           display: inline-block;
-           /* Makes the animation work properly */
-           animation: scroll-left 20s linear infinite;
-           /* Applies the animation */
-       }
-
-       /* The keyframe animation */
-       @keyframes scroll-left {
-           0% {
-               transform: translateX(100%);
-               /* Starts the text off-screen to the right */
-           }
-
-           100% {
-               transform: translateX(-100%);
-               /* Ends the text off-screen to the left */
-           }
-       }
-
-       /* WhatsApp Fixed Button Styles */
-       .whatsapp-widget {
-           position: fixed;
-           bottom: 20px;
-           right: 20px;
-           z-index: 9999;
-           background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
-           width: 60px;
-           height: 60px;
-           border-radius: 50%;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-           cursor: pointer;
-           transition: all 0.3s ease;
-           border: none;
-           outline: none;
-           animation: pulse 2s infinite;
-       }
-
-       .whatsapp-widget:hover {
-           transform: scale(1.1);
-           box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
-       }
-
-       .whatsapp-widget:active {
-           transform: scale(0.95);
-       }
-
-       .whatsapp-widget svg {
-           width: 32px;
-           height: 32px;
-           fill: white;
-       }
-
-       @keyframes pulse {
-           0% {
-               box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-           }
-
-           50% {
-               box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5), 0 0 0 10px rgba(37, 211, 102, 0.1);
-           }
-
-           100% {
-               box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-           }
-       }
-
-       @media (max-width: 768px) {
-           .whatsapp-widget {
-               bottom: 80px;
-               right: 15px;
-               width: 55px;
-               height: 55px;
-           }
-
-           .whatsapp-widget svg {
-               width: 28px;
-               height: 28px;
-           }
-       }
-
-       .carousel-container {
-           position: relative;
-           overflow: hidden;
-           border-radius: 16px;
-           /* Responsive border radius */
-       }
-
-       @media (min-width: 768px) {
-           .carousel-container {
-               border-radius: 24px;
-           }
-       }
-
-       .carousel-slide {
-           position: absolute;
-           top: 0;
-           left: 0;
-           width: 100%;
-           height: 100%;
-           opacity: 0;
-           transition: opacity 1s ease-in-out;
-           background-size: cover;
-           background-position: center;
-           background-repeat: no-repeat;
-           /* Improved image rendering */
-           image-rendering: -webkit-optimize-contrast;
-           image-rendering: crisp-edges;
-       }
-
-       .carousel-slide.active {
-           opacity: 1;
-       }
-
-       .carousel-slide::before {
-           content: '';
-           position: absolute;
-           top: 0;
-           left: 0;
-           right: 0;
-           bottom: 0;
-           background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
-       }
-
-       .carousel-content {
-           position: relative;
-           z-index: 10;
-           height: 100%;
-           display: flex;
-           align-items: center;
-       }
-
-       .carousel-nav {
-           position: absolute;
-           top: 50%;
-           transform: translateY(-50%);
-           background: rgba(255, 255, 255, 0.95);
-           border: none;
-           width: 40px;
-           height: 40px;
-           border-radius: 50%;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           cursor: pointer;
-           transition: all 0.3s ease;
-           z-index: 20;
-           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-           backdrop-filter: blur(10px);
-       }
-
-       /* Larger nav buttons on desktop */
-       @media (min-width: 768px) {
-           .carousel-nav {
-               width: 50px;
-               height: 50px;
-           }
-       }
-
-       .carousel-nav:hover {
-           background: white;
-           transform: translateY(-50%) scale(1.1);
-           box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-       }
-
-       .carousel-nav:active {
-           transform: translateY(-50%) scale(0.95);
-       }
-
-       .carousel-nav.prev {
-           left: 10px;
-       }
-
-       .carousel-nav.next {
-           right: 10px;
-       }
-
-       /* Better spacing on larger screens */
-       @media (min-width: 768px) {
-           .carousel-nav.prev {
-               left: 20px;
-           }
-
-           .carousel-nav.next {
-               right: 20px;
-           }
-       }
-
-       .carousel-dots {
-           position: absolute;
-           bottom: 15px;
-           left: 50%;
-           transform: translateX(-50%);
-           display: flex;
-           gap: 8px;
-           z-index: 20;
-       }
-
-       @media (min-width: 768px) {
-           .carousel-dots {
-               bottom: 20px;
-               gap: 10px;
-           }
-       }
-
-       .carousel-dot {
-           width: 10px;
-           height: 10px;
-           border-radius: 50%;
-           background: rgba(255, 255, 255, 0.6);
-           cursor: pointer;
-           transition: all 0.3s ease;
-           border: 2px solid transparent;
-           backdrop-filter: blur(5px);
-       }
-
-       @media (min-width: 768px) {
-           .carousel-dot {
-               width: 12px;
-               height: 12px;
-           }
-       }
-
-       .carousel-dot.active {
-           background: #DAA520;
-           border-color: white;
-           transform: scale(1.2);
-       }
-
-       .carousel-dot:hover {
-           background: rgba(255, 255, 255, 0.9);
-       }
-
-       /* Touch-friendly improvements */
-       .carousel-nav,
-       .carousel-dot {
-           -webkit-tap-highlight-color: transparent;
-           touch-action: manipulation;
-       }
-
-       /* Smooth scrolling for better UX */
-       html {
-           scroll-behavior: smooth;
-       }
-
-       /* Loading state for images */
-       .carousel-slide[data-loading="true"]::after {
-           content: '';
-           position: absolute;
-           top: 50%;
-           left: 50%;
-           width: 40px;
-           height: 40px;
-           margin: -20px 0 0 -20px;
-           border: 3px solid rgba(255, 255, 255, 0.3);
-           border-top-color: #DAA520;
-           border-radius: 50%;
-           animation: spin 1s linear infinite;
-       }
-
-       @keyframes spin {
-           to {
-               transform: rotate(360deg);
-           }
-       }
-
-       /* Text animations */
-       .slide-in-left {
-           animation: slideInLeft 1s ease-out;
-       }
-
-       .slide-in-right {
-           animation: slideInRight 1s ease-out;
-       }
-
-       .fade-in-up {
-           animation: fadeInUp 1s ease-out 0.3s both;
-       }
-
-       @keyframes slideInLeft {
-           from {
-               opacity: 0;
-               transform: translateX(-50px);
-           }
-
-           to {
-               opacity: 1;
-               transform: translateX(0);
-           }
-       }
-
-       @keyframes slideInRight {
-           from {
-               opacity: 0;
-               transform: translateX(50px);
-           }
-
-           to {
-               opacity: 1;
-               transform: translateX(0);
-           }
-       }
-
-       @keyframes fadeInUp {
-           from {
-               opacity: 0;
-               transform: translateY(30px);
-           }
-
-           to {
-               opacity: 1;
-               transform: translateY(0);
-           }
-       }
-
-       /* Responsive adjustments */
-       @media (max-width: 768px) {
-           .carousel-nav {
-               width: 40px;
-               height: 40px;
-           }
-
-           .carousel-nav.prev {
-               left: 10px;
-           }
-
-           .carousel-nav.next {
-               right: 10px;
-           }
-
-           .carousel-dots {
-               bottom: 15px;
-           }
-
-           .carousel-dot {
-               width: 10px;
-               height: 10px;
-           }
-       }
-
-       .category-row {
-           margin-bottom: 2rem;
-       }
-
-       .category-title {
-           font-size: 1.25rem;
-           font-weight: 600;
-           margin-bottom: 1rem;
-           padding-left: 0.5rem;
-       }
-
-       .products-scroller {
-           position: relative;
-       }
-
-       .products-container {
-           display: flex;
-           overflow-x: auto;
-           scroll-behavior: smooth;
-           gap: 1rem;
-           padding-bottom: 1rem;
-           -ms-overflow-style: none;
-           /* IE and Edge */
-           scrollbar-width: none;
-           /* Firefox */
-       }
-
-       .products-container::-webkit-scrollbar {
-           display: none;
-           /* Chrome, Safari and Opera */
-       }
-
-       .scroll-button {
-           position: absolute;
-           top: 50%;
-           transform: translateY(-50%);
-           width: 40px;
-           height: 40px;
-           background: white;
-           border-radius: 50%;
-           display: flex;
-           align-items: center;
-           justify-content: center;
-           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-           cursor: pointer;
-           border: none;
-           z-index: 1;
-       }
-
-       .scroll-button.left {
-           left: -20px;
-       }
-
-       .scroll-button.right {
-           right: -20px;
-       }
-
-       .scroll-button:disabled {
-           opacity: 0.5;
-           cursor: not-allowed;
-       }
-
-       .product-card {
-           flex: 0 0 auto;
-           width: 200px;
-       }
+ .social-container {
+     display: flex;
+     gap: 40px;
+     flex-wrap: wrap;
+     justify-content: center;
+ }
+
+ .social-logo {
+     position: relative;
+     width: 50px;
+     height: 50px;
+     border-radius: 20px;
+     background: linear-gradient(135deg, #ffd700, #ffed4e, #ffc107);
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+     box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+     overflow: hidden;
+ }
+
+ .social-logo::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: -100%;
+     width: 100%;
+     height: 100%;
+     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+     transition: all 0.5s;
+ }
+
+ .social-logo:hover::before {
+     left: 100%;
+ }
+
+ .social-logo:hover {
+     transform: translateY(-8px) scale(1.1);
+     box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+     background: linear-gradient(135deg, #ffed4e, #ffd700, #ff9800);
+ }
+
+ .social-logo svg {
+     width: 40px;
+     height: 40px;
+     fill: #1a1a2e;
+     transition: all 0.3s ease;
+     z-index: 2;
+ }
+
+ .social-logo:hover svg {
+     fill: #000;
+     transform: scale(1.1);
+ }
+
+ .facebook:hover {
+     background: linear-gradient(135deg, #ffd700, #4267B2);
+ }
+
+ .facebook:hover svg {
+     fill: #fff;
+ }
+
+ .instagram:hover {
+     background: linear-gradient(135deg, #ffd700, #E4405F, #FCCC63, #833AB4);
+ }
+
+ .instagram:hover svg {
+     fill: #fff;
+ }
+
+ .tiktok:hover {
+     background: linear-gradient(135deg, #ffd700, #000000);
+ }
+
+ .tiktok:hover svg {
+     fill: #fff;
+ }
+
+ .logo-label {
+     position: absolute;
+     bottom: -30px;
+     left: 50%;
+     transform: translateX(-50%);
+     color: #ffd700;
+     font-size: 12px;
+     font-weight: 600;
+     opacity: 0;
+     transition: all 0.3s ease;
+     text-transform: uppercase;
+     letter-spacing: 1px;
+ }
+
+ .social-logo:hover .logo-label {
+     opacity: 1;
+     bottom: -25px;
+ }
+
+ .glow-effect {
+     position: absolute;
+     top: -50%;
+     left: -50%;
+     width: 200%;
+     height: 200%;
+     background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+     opacity: 0;
+     transition: opacity 0.3s ease;
+     pointer-events: none;
+ }
+
+ .social-logo:hover .glow-effect {
+     opacity: 1;
+ }
+
+ @keyframes pulse {
+     0% {
+         box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+     }
+
+     50% {
+         box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6);
+     }
+
+     100% {
+         box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+     }
+ }
+
+ .social-logo {
+     animation: pulse 2s infinite;
+ }
+
+ .social-logo:hover {
+     animation: none;
+ }
+
+ @media (max-width: 768px) {
+     .social-container {
+         gap: 30px;
+     }
+
+     .social-logo {
+         width: 70px;
+         height: 70px;
+     }
+
+     .social-logo svg {
+         width: 35px;
+         height: 35px;
+     }
+ }
+
+ /* The text itself */
+ .moving-text-modern {
+     color: white;
+     font-size: 18px;
+     font-family: 'Arial', sans-serif;
+     display: inline-block;
+     /* Makes the animation work properly */
+     animation: scroll-left 20s linear infinite;
+     /* Applies the animation */
+ }
+
+ /* The keyframe animation */
+ @keyframes scroll-left {
+     0% {
+         transform: translateX(100%);
+         /* Starts the text off-screen to the right */
+     }
+
+     100% {
+         transform: translateX(-100%);
+         /* Ends the text off-screen to the left */
+     }
+ }
+
+ /* WhatsApp Fixed Button Styles */
+ .whatsapp-widget {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     z-index: 9999;
+     background: linear-gradient(135deg, #25D366 0%, #20BA5A 100%);
+     width: 60px;
+     height: 60px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+     cursor: pointer;
+     transition: all 0.3s ease;
+     border: none;
+     outline: none;
+     animation: pulse 2s infinite;
+ }
+
+ .whatsapp-widget:hover {
+     transform: scale(1.1);
+     box-shadow: 0 12px 35px rgba(37, 211, 102, 0.4);
+ }
+
+ .whatsapp-widget:active {
+     transform: scale(0.95);
+ }
+
+ .whatsapp-widget svg {
+     width: 32px;
+     height: 32px;
+     fill: white;
+ }
+
+ @keyframes pulse {
+     0% {
+         box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+     }
+
+     50% {
+         box-shadow: 0 8px 25px rgba(37, 211, 102, 0.5), 0 0 0 10px rgba(37, 211, 102, 0.1);
+     }
+
+     100% {
+         box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+     }
+ }
+
+ @media (max-width: 768px) {
+     .whatsapp-widget {
+         bottom: 80px;
+         right: 15px;
+         width: 55px;
+         height: 55px;
+     }
+
+     .whatsapp-widget svg {
+         width: 28px;
+         height: 28px;
+     }
+ }
+
+ .carousel-container {
+     position: relative;
+     overflow: hidden;
+     border-radius: 16px;
+     /* Responsive border radius */
+ }
+
+ @media (min-width: 768px) {
+     .carousel-container {
+         border-radius: 24px;
+     }
+ }
+
+ .carousel-slide {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     opacity: 0;
+     transition: opacity 1s ease-in-out;
+     background-size: cover;
+     background-position: center;
+     background-repeat: no-repeat;
+     /* Improved image rendering */
+     image-rendering: -webkit-optimize-contrast;
+     image-rendering: crisp-edges;
+ }
+
+ .carousel-slide.active {
+     opacity: 1;
+ }
+
+ .carousel-slide::before {
+     content: '';
+     position: absolute;
+     top: 0;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: linear-gradient(135deg, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 100%);
+ }
+
+ .carousel-content {
+     position: relative;
+     z-index: 10;
+     height: 100%;
+     display: flex;
+     align-items: center;
+ }
+
+ .carousel-nav {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     background: rgba(255, 255, 255, 0.95);
+     border: none;
+     width: 40px;
+     height: 40px;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     cursor: pointer;
+     transition: all 0.3s ease;
+     z-index: 20;
+     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+     backdrop-filter: blur(10px);
+ }
+
+ /* Larger nav buttons on desktop */
+ @media (min-width: 768px) {
+     .carousel-nav {
+         width: 50px;
+         height: 50px;
+     }
+ }
+
+ .carousel-nav:hover {
+     background: white;
+     transform: translateY(-50%) scale(1.1);
+     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+ }
+
+ .carousel-nav:active {
+     transform: translateY(-50%) scale(0.95);
+ }
+
+ .carousel-nav.prev {
+     left: 10px;
+ }
+
+ .carousel-nav.next {
+     right: 10px;
+ }
+
+ /* Better spacing on larger screens */
+ @media (min-width: 768px) {
+     .carousel-nav.prev {
+         left: 20px;
+     }
+
+     .carousel-nav.next {
+         right: 20px;
+     }
+ }
+
+ .carousel-dots {
+     position: absolute;
+     bottom: 15px;
+     left: 50%;
+     transform: translateX(-50%);
+     display: flex;
+     gap: 8px;
+     z-index: 20;
+ }
+
+ @media (min-width: 768px) {
+     .carousel-dots {
+         bottom: 20px;
+         gap: 10px;
+     }
+ }
+
+ .carousel-dot {
+     width: 10px;
+     height: 10px;
+     border-radius: 50%;
+     background: rgba(255, 255, 255, 0.6);
+     cursor: pointer;
+     transition: all 0.3s ease;
+     border: 2px solid transparent;
+     backdrop-filter: blur(5px);
+ }
+
+ @media (min-width: 768px) {
+     .carousel-dot {
+         width: 12px;
+         height: 12px;
+     }
+ }
+
+ .carousel-dot.active {
+     background: #DAA520;
+     border-color: white;
+     transform: scale(1.2);
+ }
+
+ .carousel-dot:hover {
+     background: rgba(255, 255, 255, 0.9);
+ }
+
+ /* Touch-friendly improvements */
+ .carousel-nav,
+ .carousel-dot {
+     -webkit-tap-highlight-color: transparent;
+     touch-action: manipulation;
+ }
+
+ /* Smooth scrolling for better UX */
+ html {
+     scroll-behavior: smooth;
+ }
+
+ /* Loading state for images */
+ .carousel-slide[data-loading="true"]::after {
+     content: '';
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 40px;
+     height: 40px;
+     margin: -20px 0 0 -20px;
+     border: 3px solid rgba(255, 255, 255, 0.3);
+     border-top-color: #DAA520;
+     border-radius: 50%;
+     animation: spin 1s linear infinite;
+ }
+
+ @keyframes spin {
+     to {
+         transform: rotate(360deg);
+     }
+ }
+
+ /* Text animations */
+ .slide-in-left {
+     animation: slideInLeft 1s ease-out;
+ }
+
+ .slide-in-right {
+     animation: slideInRight 1s ease-out;
+ }
+
+ .fade-in-up {
+     animation: fadeInUp 1s ease-out 0.3s both;
+ }
+
+ @keyframes slideInLeft {
+     from {
+         opacity: 0;
+         transform: translateX(-50px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateX(0);
+     }
+ }
+
+ @keyframes slideInRight {
+     from {
+         opacity: 0;
+         transform: translateX(50px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateX(0);
+     }
+ }
+
+ @keyframes fadeInUp {
+     from {
+         opacity: 0;
+         transform: translateY(30px);
+     }
+
+     to {
+         opacity: 1;
+         transform: translateY(0);
+     }
+ }
+
+ /* Responsive adjustments */
+ @media (max-width: 768px) {
+     .carousel-nav {
+         width: 40px;
+         height: 40px;
+     }
+
+     .carousel-nav.prev {
+         left: 10px;
+     }
+
+     .carousel-nav.next {
+         right: 10px;
+     }
+
+     .carousel-dots {
+         bottom: 15px;
+     }
+
+     .carousel-dot {
+         width: 10px;
+         height: 10px;
+     }
+ }
+
+ .category-row {
+     margin-bottom: 2rem;
+ }
+
+ .category-title {
+     font-size: 1.25rem;
+     font-weight: 600;
+     margin-bottom: 1rem;
+     padding-left: 0.5rem;
+ }
+
+ .products-scroller {
+     position: relative;
+ }
+
+ .products-container {
+     display: flex;
+     overflow-x: auto;
+     scroll-behavior: smooth;
+     gap: 1rem;
+     padding-bottom: 1rem;
+     -ms-overflow-style: none;
+     /* IE and Edge */
+     scrollbar-width: none;
+     /* Firefox */
+ }
+
+ .products-container::-webkit-scrollbar {
+     display: none;
+     /* Chrome, Safari and Opera */
+ }
+
+ .scroll-button {
+     position: absolute;
+     top: 50%;
+     transform: translateY(-50%);
+     width: 40px;
+     height: 40px;
+     background: white;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+     cursor: pointer;
+     border: none;
+     z-index: 1;
+ }
+
+ .scroll-button.left {
+     left: -20px;
+ }
+
+ .scroll-button.right {
+     right: -20px;
+ }
+
+ .scroll-button:disabled {
+     opacity: 0.5;
+     cursor: not-allowed;
+ }
+
+ .product-card {
+     flex: 0 0 auto;
+     width: 200px;
+ }
