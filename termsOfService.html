@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DN Crafts — Terms & Conditions</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; /* dark navy */
+      --card:#0b1220;
+      --accent:#f97316; /* warm orange */
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.04);
+      --radius:18px;
+      --maxw:1000px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,#071226 0%, #071528 40%);
+      color: #e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:48px 20px;
+      line-height:1.6;
+    }
+
+    /* Page wrapper */
+    .wrap{
+      width:100%;
+      max-width:var(--maxw);
+      position:relative;
+    }
+
+    /* Slanted hero banner */
+    .hero{
+      position:relative;
+      overflow:hidden;
+      border-radius:24px;
+      padding:48px 36px;
+      margin-bottom:28px;
+      background: linear-gradient(135deg, rgba(249,115,22,0.14), rgba(99,102,241,0.06));
+      box-shadow: 0 10px 30px rgba(2,6,23,0.6), inset 0 -1px 0 rgba(255,255,255,0.02);
+    }
+    .hero::before{
+      content:'';
+      position:absolute;
+      inset:0;
+      background: linear-gradient(120deg, rgba(249,115,22,0.06) 0%, rgba(99,102,241,0.03) 50%, rgba(20,184,166,0.02) 100%);
+      transform:skewY(-6deg) scale(1.2);
+      transform-origin:0 0;
+      pointer-events:none;
+    }
+
+    .brand{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      position:relative;
+      z-index:2;
+    }
+    .logo{
+      height:64px;
+      width:64px;
+      border-radius:14px;
+      background:linear-gradient(135deg,var(--accent),#6366f1);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      color:white;
+      box-shadow:0 6px 18px rgba(249,115,22,0.12);
+      transform:skewX(-12deg);
+    }
+    .hero h1{margin:0;font-size:22px;letter-spacing:0.2px}
+    .hero p{margin:6px 0 0;color:var(--muted);font-size:14px}
+
+    /* Card for content with subtle diagonal edge */
+    .card{
+      position:relative;
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:16px;
+      padding:28px;
+      box-shadow: 0 12px 30px rgba(2,6,23,0.65);
+      overflow:hidden;
+    }
+    .card::before{
+      content:'';
+      position:absolute;
+      left:-15%;
+      top:-8%;
+      width:130%;
+      height:34%;
+      background:linear-gradient(90deg, rgba(99,102,241,0.08), rgba(249,115,22,0.06));
+      transform:skewY(-6deg);
+      pointer-events:none;
+      z-index:0;
+    }
+
+    /* Section styles — give each a slanted left border accent */
+    section{
+      position:relative;
+      padding:18px 22px;
+      margin:14px 0;
+      background:transparent;
+      border-radius:12px;
+      z-index:1;
+    }
+    section .num{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;height:44px;border-radius:10px;
+      background:linear-gradient(180deg,var(--accent),#6ee7b7);
+      color:#061427;font-weight:700;margin-right:14px;transform:skewX(-10deg);
+      box-shadow:0 8px 18px rgba(6,12,30,0.5);
+    }
+    section h2{display:flex;align-items:center;gap:12px;margin:0;font-size:16px}
+    section p, section li{color: #d6e6fb;font-size:14px}
+
+    ul.terms{margin:12px 0 0 0;padding:0 0 0 18px}
+    ul.terms li{margin:8px 0}
+
+    /* small prints */
+    .muted{color:var(--muted);font-size:13px}
+
+    /* layout helpers */
+    .flex-row{display:flex;align-items:flex-start;gap:12px}
+
+    /* Contact box aligned to the right bottom with a slanted ribbon */
+    .contact{
+      margin-top:18px;
+      display:flex;
+      justify-content:flex-end;
+    }
+    .contact .ribbon{
+      position:relative;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,#0ea5a4, #06b6d4);
+      transform:skewX(-12deg);font-weight:700;color:#001;box-shadow:0 10px 22px rgba(6,12,30,0.6);
+    }
+    .contact .ribbon span{display:inline-block;transform:skewX(12deg)}
+
+    /* responsive */
+    @media (max-width:720px){
+      .hero{padding:24px}
+      .brand{gap:12px}
+      .logo{height:52px;width:52px}
+      section{padding:14px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="brand">
+        <div class="logo">DN</div>
+        <div>
+          <h1>DN Crafts — Terms &amp; Conditions</h1>
+          <p class="muted">Last Updated: 12 August 2025</p>
+        </div>
+      </div>
+    </header>
+
+    <article class="card" role="article" aria-labelledby="terms-title">
+      <h2 id="terms-title" style="margin-top:0;display:flex;align-items:center;gap:12px">
+        <span class="num" style="width:36px;height:36px">T</span>
+        <span style="font-size:18px">Welcome &amp; Overview</span>
+      </h2>
+      <p class="muted" style="margin-top:8px">Welcome to DN Crafts! These Terms and Conditions govern your use of our website and your purchase of our products. By accessing or using our website, you agree to be bound by these Terms. If you do not agree with any part of these Terms, you must not use our website.</p>
+
+      <section aria-labelledby="general">
+        <div class="flex-row">
+          <div class="num">1</div>
+          <div>
+            <h2 id="general">General Terms</h2>
+            <ul class="terms">
+              <li><strong>Age Restriction:</strong> By using this website, you represent that you are at least the age of majority in your state or province of residence.</li>
+              <li><strong>Accuracy of Information:</strong> We strive for accuracy in product descriptions, pricing, and availability, but errors or omissions may occur. We reserve the right to correct mistakes and update information.</li>
+              <li><strong>Changes to Terms:</strong> We may update these Terms. It is your responsibility to check this page; continued use constitutes acceptance of changes.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="products">
+        <div class="flex-row">
+          <div class="num">2</div>
+          <div>
+            <h2 id="products">Products &amp; Orders</h2>
+            <ul class="terms">
+              <li><strong>Product Availability:</strong> Products are subject to availability and we may limit sales by person, region, or jurisdiction.</li>
+              <li><strong>Pricing:</strong> Prices are listed in PKR and exclude taxes, shipping, and handling which will be added at checkout.</li>
+              <li><strong>Order Acceptance:</strong> We may accept or decline orders for reasons including availability, pricing errors, or suspected fraud. If we cancel, we will notify you.</li>
+              <li><strong>Customization:</strong> For personalized items you are responsible for accuracy of provided information; we are not liable for errors caused by user input.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="payment">
+        <div class="flex-row">
+          <div class="num">3</div>
+          <div>
+            <h2 id="payment">Payment &amp; Billing</h2>
+            <ul class="terms">
+              <li><strong>Payment Methods:</strong> We accept JazzCash, Easypaisa, and direct bank transfer.</li>
+              <li><strong>Billing Information:</strong> You must provide current and accurate purchase and account information and keep it up to date.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="shipping">
+        <div class="flex-row">
+          <div class="num">4</div>
+          <div>
+            <h2 id="shipping">Shipping &amp; Delivery</h2>
+            <ul class="terms">
+              <li><strong>Shipping Policy:</strong> We aim to ship promptly. Shipping times are estimates; we are not responsible for carrier or customs delays or damage during shipping.</li>
+              <li><strong>Risk of Loss:</strong> Risk and title pass to you once we deliver the goods to the carrier.</li>
+              <li><strong>Incorrect Address:</strong> Extra costs for redelivery due to wrong/incomplete address provided by you will be charged to you.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="returns">
+        <div class="flex-row">
+          <div class="num">5</div>
+          <div>
+            <h2 id="returns">Returns &amp; Refunds</h2>
+            <ul class="terms">
+              <li><strong>Return Policy:</strong> 7-day returns for unused and undamaged items in original packaging.</li>
+              <li><strong>Non-Returnable Items:</strong> Personalized or custom items, gift cards, and sale items are final sale and cannot be returned.</li>
+              <li><strong>Refunds:</strong> After inspection we will notify you of approval/rejection. If approved, we will process refund to your original payment method.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="ip">
+        <div class="flex-row">
+          <div class="num">6</div>
+          <div>
+            <h2 id="ip">Intellectual Property</h2>
+            <p>All website content—text, graphics, logos, images, and product designs—are the property of DN Crafts and protected by applicable intellectual property laws. You may not reproduce, duplicate, copy, sell, or exploit any portion of the site without our written permission.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="liability">
+        <div class="flex-row">
+          <div class="num">7</div>
+          <div>
+            <h2 id="liability">Limitation of Liability</h2>
+            <p>To the fullest extent permitted by law, DN Crafts shall not be liable for indirect, incidental, special, consequential, or punitive damages arising from use of the website or products. We make no warranties about operation or the information, content, materials, or products on the site.</p>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="contact">
+        <div class="flex-row">
+          <div class="num">8</div>
+          <div>
+            <h2 id="contact">Contact Information</h2>
+            <p>If you have any questions about these Terms, please contact us at <a href="mailto:infodncrafts@gmail.com">infodncrafts@gmail.com</a> or call <a href="tel:+923021943684">0302 1943684</a>.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="contact">
+        <div class="ribbon"><span>Questions? We're here to help</span></div>
+      </div>
+
+    </article>
+
+  </div>
+</body>
+</html>
