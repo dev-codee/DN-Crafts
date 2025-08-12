@@ -1692,3 +1692,45 @@ function addTouchScrollSupport() {
         });
     });
 }
+function toggleFAQ(button) {
+    const answer = button.nextElementSibling;
+    const icon = button.querySelector('.faq-icon');
+    const isExpanded = button.getAttribute('aria-expanded') === 'true';
+
+    // Close all other FAQ items
+    const allButtons = document.querySelectorAll('.faq-question');
+    const allAnswers = document.querySelectorAll('.faq-answer');
+
+    allButtons.forEach(btn => {
+        if (btn !== button) {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.nextElementSibling.classList.remove('show');
+            btn.nextElementSibling.classList.add('hidden');
+        }
+    });
+
+    // Toggle current FAQ item
+    if (isExpanded) {
+        button.setAttribute('aria-expanded', 'false');
+        answer.classList.remove('show');
+        answer.classList.add('hidden');
+    } else {
+        button.setAttribute('aria-expanded', 'true');
+        answer.classList.remove('hidden');
+        answer.classList.add('show');
+    }
+}
+
+// Close FAQ when clicking outside
+document.addEventListener('click', function (event) {
+    if (!event.target.closest('.faq-item')) {
+        const allButtons = document.querySelectorAll('.faq-question');
+        const allAnswers = document.querySelectorAll('.faq-answer');
+
+        allButtons.forEach(btn => {
+            btn.setAttribute('aria-expanded', 'false');
+            btn.nextElementSibling.classList.remove('show');
+            btn.nextElementSibling.classList.add('hidden');
+        });
+    }
+});

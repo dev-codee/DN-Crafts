@@ -355,6 +355,49 @@
             </p>
         </div>
 
+        <!-- Dismissible Version -->
+        <div id="dismissible-alert" class="bg-blue-50 border border-blue-200 rounded-md p-4 mb-6" role="alert">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <svg class="h-5 w-5 text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-blue-800">
+                            <span class="font-semibold">💰 Pricing Notice:</span>
+                            Prices are not firm and vary accordingly. Please contact us on WhatsApp for more details and
+                            discounts. Thank you!
+                        </p>
+                    </div>
+                    <div class="ml-6">
+                        <a href="https://wa.me/923021943684" target="_blank"
+                            class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-green-600 hover:bg-green-700 transition-colors">
+                            <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                <path
+                                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.705" />
+                            </svg>
+                            WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="flex-shrink-0">
+                    <button type="button"
+                        class="inline-flex bg-blue-50 rounded-md p-1.5 text-blue-500 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-blue-50 focus:ring-blue-600"
+                        onclick="document.getElementById('dismissible-alert').style.display='none'">
+                        <span class="sr-only">Dismiss</span>
+                        <svg class="h-3 w-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
         <div class="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
             <!-- Main header row -->
             <div class="flex justify-between items-center">
@@ -850,6 +893,147 @@
                 <!-- Recently viewed products will be populated by JavaScript -->
             </div>
         </section>
+        <div class="space-y-4" id="faq-container">
+            <section class="container mx-auto px-4 py-8 sm:py-12" role="region" aria-labelledby="faq-title" itemscope
+                itemtype="https://schema.org/FAQPage">
+                <div class="max-w-4xl mx-auto">
+                    <header class="text-center mb-8 sm:mb-12">
+                        <h2 id="faq-title" class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900"
+                            itemprop="name">
+                            Frequently Asked Questions
+                        </h2>
+                        <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+                            Find answers to common questions about our personalized gifts and services.
+                        </p>
+                    </header>
+                    <!-- FAQ Item 1 -->
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" itemscope
+                        itemtype="https://schema.org/Question">
+                        <button
+                            class="faq-question w-full text-left p-4 sm:p-6 font-semibold text-gray-900 hover:text-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-inset transition-colors flex justify-between items-center"
+                            onclick="toggleFAQ(this)" aria-expanded="false" aria-controls="faq-answer-1">
+                            <span itemprop="name">What types of gifts do you sell?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer hidden p-4 sm:p-6 pt-0 text-gray-600" id="faq-answer-1" itemscope
+                            itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                                We offer a wide variety of gifts, including personalized items, home decor, umrah
+                                tabarak boxes, gift baskets, and special occasion gifts such as birthday, anniversary,
+                                and holiday gifts.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 2 -->
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" itemscope
+                        itemtype="https://schema.org/Question">
+                        <button
+                            class="faq-question w-full text-left p-4 sm:p-6 font-semibold text-gray-900 hover:text-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-inset transition-colors flex justify-between items-center"
+                            onclick="toggleFAQ(this)" aria-expanded="false" aria-controls="faq-answer-2">
+                            <span itemprop="name">How can I place an order?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer hidden p-4 sm:p-6 pt-0 text-gray-600" id="faq-answer-2" itemscope
+                            itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                                Simply browse our website, add your desired items to your cart, and proceed to checkout
+                                on WhatsApp or email. You'll need to provide shipping information and payment details to
+                                complete your order.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 3 -->
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" itemscope
+                        itemtype="https://schema.org/Question">
+                        <button
+                            class="faq-question w-full text-left p-4 sm:p-6 font-semibold text-gray-900 hover:text-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-inset transition-colors flex justify-between items-center"
+                            onclick="toggleFAQ(this)" aria-expanded="false" aria-controls="faq-answer-3">
+                            <span itemprop="name">Can I customize my gift?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer hidden p-4 sm:p-6 pt-0 text-gray-600" id="faq-answer-3" itemscope
+                            itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                                Yes! Many of our products can be personalized with names, messages, or custom designs.
+                                Contact us on WhatsApp for any customization.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 4 -->
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" itemscope
+                        itemtype="https://schema.org/Question">
+                        <button
+                            class="faq-question w-full text-left p-4 sm:p-6 font-semibold text-gray-900 hover:text-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-inset transition-colors flex justify-between items-center"
+                            onclick="toggleFAQ(this)" aria-expanded="false" aria-controls="faq-answer-4">
+                            <span itemprop="name">What payment methods do you accept?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer hidden p-4 sm:p-6 pt-0 text-gray-600" id="faq-answer-4" itemscope
+                            itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                                We accept bank transfer, JazzCash and EasyPaisa secure online payment methods. Check the
+                                payment section at checkout for full options.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ Item 5 -->
+                    <div class="faq-item bg-white rounded-lg border border-gray-200 shadow-sm" itemscope
+                        itemtype="https://schema.org/Question">
+                        <button
+                            class="faq-question w-full text-left p-4 sm:p-6 font-semibold text-gray-900 hover:text-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-inset transition-colors flex justify-between items-center"
+                            onclick="toggleFAQ(this)" aria-expanded="false" aria-controls="faq-answer-5">
+                            <span itemprop="name">Do you offer international shipping?</span>
+                            <svg class="faq-icon w-5 h-5 transform transition-transform duration-200" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div class="faq-answer hidden p-4 sm:p-6 pt-0 text-gray-600" id="faq-answer-5" itemscope
+                            itemtype="https://schema.org/Answer">
+                            <div itemprop="text">
+                                Yes, we offer international shipping to select countries. Shipping fees and delivery
+                                times will vary based on your location.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact CTA -->
+                <div class="text-center mt-8 sm:mt-12 p-6 bg-yellow-50 rounded-lg border border-yellow-200">
+                    <h3 class="text-lg sm:text-xl font-semibold text-gray-900 mb-2">Have more questions?</h3>
+                    <p class="text-gray-600 mb-4">We're here to help! Contact us for personalized assistance.</p>
+                    <a href="https://wa.me/923021943684" target="_blank" rel="noopener noreferrer"
+                        class="inline-flex items-center px-6 py-3 bg-green-600 text-white font-medium rounded-lg hover:bg-green-700 transition-colors">
+                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.705" />
+                        </svg>
+                        Contact us on WhatsApp
+                    </a>
+                </div>
+        </div>
+        </section>
         <footer class="bg-gray-900 text-gray-300 py-8 sm:py-12 mt-8 sm:mt-12" role="contentinfo" itemscope
             itemtype="https://schema.org/WPFooter">
             <div class="container mx-auto px-4 sm:px-6">
@@ -908,7 +1092,8 @@
                         </div>
                         <br>
                         <div class="social-container">
-                            <a href="https://www.facebook.com/profile.php?id=61568154287211" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.facebook.com/profile.php?id=61568154287211" target="_blank"
+                                rel="noopener noreferrer">
                                 <div class="social-logo facebook">
                                     <div class="glow-effect"></div>
                                     <svg viewBox="0 0 24 24">
@@ -932,7 +1117,8 @@
                             </a>
 
                             <!-- TikTok Logo -->
-                            <a href="https://www.tiktok.com/@dn.crafts?_t=ZS-8yoMGEQGi48&_r=1" target="_blank" rel="noopener noreferrer">
+                            <a href="https://www.tiktok.com/@dn.crafts?_t=ZS-8yoMGEQGi48&_r=1" target="_blank"
+                                rel="noopener noreferrer">
                                 <div class="social-logo tiktok">
                                     <div class="glow-effect"></div>
                                     <svg viewBox="0 0 24 24">
@@ -957,18 +1143,6 @@
                     <p class="text-sm">&copy; 2025 DN Crafts. All rights reserved.</p>
                     <a href="https://dev-codee.github.io/" class="block hover:text-white transition-colors"
                         target="_blank" rel="noopener noreferrer">Designed by Faizan Ahmad</a>
-                </div>
-            </div>
-            <div class="text-center sm:text-left">
-                <h4 class="font-semibold text-white mb-3">Newsletter</h4>
-                <p class="text-sm mb-3">Subscribe for updates and offers</p>
-                <div class="flex max-w-sm">
-                    <input type="email" id="newsletter-email" placeholder="Your email"
-                        class="flex-1 px-3 py-2 rounded-l-lg text-gray-900 text-sm focus:outline-none" />
-                    <button onclick="subscribeNewsletter(document.getElementById('newsletter-email').value)"
-                        class="bg-yellow-600 text-white px-4 py-2 rounded-r-lg text-sm hover:bg-yellow-700 transition-colors">
-                        Subscribe
-                    </button>
                 </div>
             </div>
         </footer>
