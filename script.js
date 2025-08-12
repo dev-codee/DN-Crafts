@@ -720,7 +720,7 @@ function openQuickView(product) {
     document.getElementById('quick-view-image').src = product.image;
     document.getElementById('quick-view-name').textContent = product.name;
     document.getElementById('quick-view-category').textContent = product.category;
-    document.getElementById('quick-view-price').textContent = `$${formatPrice(product.price)}`;
+    document.getElementById('quick-view-price').textContent = `${formatPrice(product.price)} pkr`;
     document.getElementById('quick-view-description').textContent = product.description;
 
     // Set up add to cart button
