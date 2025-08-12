@@ -623,3 +623,54 @@
      flex: 0 0 auto;
      width: 200px;
  }
+ .product-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+@media (min-width: 475px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.75rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .product-grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 2rem;
+    }
+}
+
+/* Line clamp utility for text truncation */
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Ensure product cards maintain good aspect ratio on mobile */
+@media (max-width: 640px) {
+    .product-card {
+        min-height: 320px;
+    }
+    
+    .product-card img {
+        min-height: 180px;
+    }
+}
