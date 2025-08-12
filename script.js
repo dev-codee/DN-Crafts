@@ -9,10 +9,7 @@ const categories = [
     'Occasion Gifts',
     'Flower Bouquets',
     'Gift Baskets',
-    'Cakes',
-    'Cupcake',
-    'Sundae',
-    'Biscuits',
+    'Sweets',
 ];
 // Application State
 let cartItems = [];
