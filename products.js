@@ -30,6 +30,14 @@ const products = [
     image: 'pics\\carboard box.jpg',
     description: 'Special bags for Umrah souvenirs.',
   },
+    {
+    id: 45,
+    name: 'Umrah Tabarak Boxes',
+    category: 'Tabarak Boxes',
+    price: 500,
+    image: 'pics//ummrahCard.jpg',
+    description: 'Special boxes for Umrah souvenirs.',
+  },
   {
     id: 24,
     name: 'Cake Box 8*8 Inches',
@@ -43,7 +51,7 @@ const products = [
     name: 'Wedding Bid Boxes',
     category: 'Acrylic Products',
     price: 250,
-    image: 'pics\\bidBox.jpg',
+    image: 'pics\\bidB.jpg',
     description: 'Elegant acrylic boxes for wedding bids.',
   },
   {
@@ -67,7 +75,7 @@ const products = [
     name: 'Gift Bag',
     category: 'Acrylic Products',
     price: 1400,
-    image: 'pics\\giftBox.jpg',
+    image: 'pics\\bag.jpg',
     description: 'Stylish acrylic gift bag for various occasions.',
   },
   {
@@ -108,7 +116,7 @@ const products = [
     name: 'Ultra-Luxury Acrylic Box Wedding Invite (Rajab Butt)',
     category: 'Invitation Cards',
     price: 2400,
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\rb.jpg',
     description: 'Premium wedding invitation card in a luxurious acrylic box.',
   },
   {
@@ -116,23 +124,15 @@ const products = [
     name: 'Simple Acrylic Box Wedding Invite',
     category: 'Invitation Cards',
     price: 700,
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\simpleIN.jpg',
     description: 'Elegant wedding invitation card in a simple acrylic box.',
-  },
-  {
-    id: 13,
-    name: 'Luxury Acrylic Box Wedding Invite With Dry Fruit Portion',
-    category: 'Invitation Cards',
-    price: 1200,
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
-    description: 'High-end wedding invitation with a dedicated dry fruit compartment.',
   },
   {
     id: 15,
     name: 'Simple Foldable Wedding Invite',
     category: 'Invitation Cards',
     price: 230,
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    image: 'pics\\cardInvite.jpg',
     description: 'Classic foldable wedding invitation card.',
   },
   // Favor Boxes
@@ -160,14 +160,6 @@ const products = [
     image: 'pics\\tinBox.webp',
     description: 'Stylish tin boxes for wedding favors.',
   },
-  {
-    id: 19,
-    name: 'Cardboard Wedding Favor Box',
-    category: 'Favor Boxes',
-    price: 70,
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
-    description: 'Eco-friendly cardboard boxes for wedding favors.',
-  },
     
   // Customized Bride Dupata
   {
@@ -188,43 +180,35 @@ const products = [
   },
   // Occasion Gifts
   {
-    id: 27,
-    name: 'Eid Gifts',
-    category: 'Occasion Gifts',
-    price: getRandomPrice(1000, 5000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
-    description: 'Curated gift items for Eid celebrations.',
-  },
-  {
     id: 28,
     name: 'Birthday Gifts',
     category: 'Occasion Gifts',
-    price: getRandomPrice(1000, 6000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    price: 12000,
+    image: 'pics\\BirtGift.jpg',
     description: 'Personalized gifts for birthdays.',
   },
   {
     id: 29,
     name: 'Ramzan Gifts',
     category: 'Occasion Gifts',
-    price: getRandomPrice(1200, 7000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    price: 3500,
+    image: 'pics\\ramGift.jpg',
     description: 'Thoughtful gifts for the holy month of Ramzan.',
   },
   {
     id: 30,
     name: 'Father’s Day Gifts',
     category: 'Occasion Gifts',
-    price: getRandomPrice(1500, 8000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    price: 1700,
+    image: 'pics\\fathGift.jpg',
     description: 'Unique gift items for Father’s Day.',
   },
   {
     id: 31,
     name: 'Mother’s Day Gifts',
     category: 'Occasion Gifts',
-    price: getRandomPrice(1500, 9000),
-    image: 'https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available',
+    price: 1900,
+    image: 'pics\\mothGift.jpg',
     description: 'Heartfelt gifts for Mother’s Day.',
   },
 
@@ -469,5 +453,37 @@ const products = [
     "price": 3000,
     "image": "pics\\spider man cake.jpg",
     "description": "2 pound speical cake."
+  },
+  {
+    "id": 67,
+    "name": "Neon Light frame",
+    "category": "Special Gifts",
+    "price": 2200,
+    "image": "pics\\neon.jpg",
+    "description": "Customized neon frame."
+  },
+  {
+    "id": 66,
+    "name": "Combo Box",
+    "category": "Special Gifts",
+    "price": 2100,
+    "image": "pics\\combo.jpg",
+    "description": "key chain, pen and temperature bottle."
+  },
+  {
+    "id": 67,
+    "name": "Wallet Box",
+    "category": "Special Gifts",
+    "price": 1750,
+    "image": "pics\\wallet.jpg",
+    "description": "Customized key chain and wallet."
+  },
+  {
+    "id": 68,
+    "name": "Illusion frame",
+    "category": "Special Gifts",
+    "price": 1800,
+    "image": "pics\\lightFrame.jpg",
+    "description": "Customized light frame with pic."
   },
 ];

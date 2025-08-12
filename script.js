@@ -10,6 +10,7 @@ const categories = [
     'Flower Bouquets',
     'Gift Baskets',
     'Sweets',
+    'Special Gifts',
 ];
 // Application State
 let cartItems = [];
