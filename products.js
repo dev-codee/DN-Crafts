@@ -328,7 +328,7 @@ const products = [
   },
   {
     "id": 51,
-    "name": "Chocolate Cupcake 6 pics",
+    "name": "Chocolate Cupcake 6 pcs",
     "category": "Sweets",
     "price": 850,
     "image": "pics\\choclate cc.jpg",
@@ -336,7 +336,7 @@ const products = [
   },
   {
     "id": 52,
-    "name": "Pineapple Cupcake 6 pics",
+    "name": "Pineapple Cupcake 6 pcs",
     "category": "Sweets",
     "price": 820,
     "image": "pics\\pinecc.jpg",
@@ -344,7 +344,7 @@ const products = [
   },
   {
     "id": 53,
-    "name": "Oreo Cupcake 6 pics",
+    "name": "Oreo Cupcake 6 pcs",
     "category": "Sweets",
     "price": 820,
     "image": "pics\\oreo cc.jpg",
@@ -352,17 +352,17 @@ const products = [
   },
   {
     "id": 54,
-    "name": "Fudge Cupcake 6 pics",
+    "name": "Fudge Cupcake 6 pcs",
     "category": "Sweets",
-    "price": 1800,
+    "price": 1400,
     "image": "pics\\fudge cc.jpg",
     "description": "Homemade fudge cupcakes."
   },
   {
     "id": 70,
-    "name": "butterscotch Cupcake 6 pics",
+    "name": "butterscotch Cupcake 6 pcs",
     "category": "Sweets",
-    "price": 1600,
+    "price": 1200,
     "image": "pics\\caromal cc.jpg",
     "description": "homemade butterscotch cupcakes."
   },
@@ -408,11 +408,11 @@ const products = [
   },
   {
     "id": 63,
-    "name": "Brownie 6 pics",
+    "name": "Brownie 6 pcs",
     "category": "Sweets",
     "price": 1320,
     "image": "pics\\brownie.jpg",
-    "description": "A single rich and chewy brownie."
+    "description": "Rich and chewy brownies."
   },
   {
     "id": 64,
