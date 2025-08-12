@@ -51,7 +51,7 @@ const products = [
     name: 'Wedding Bid Boxes',
     category: 'Acrylic Products',
     price: 250,
-    image: 'pics\\bidB.jpg',
+    image: 'pics\\BidB.jpg',
     description: 'Elegant acrylic boxes for wedding bids.',
   },
   {
@@ -274,7 +274,7 @@ const products = [
     "id": 44,
     "name": "Chocolate Cake",
     "category": "Sweets",
-    "price": 880,
+    "price": 1100,
     "image": "pics\\choc cake.jpg",
     "description": "A classic chocolate cake."
   },
@@ -282,7 +282,7 @@ const products = [
     "id": 45,
     "name": "Oreo Cake",
     "category": "Sweets",
-    "price": 850,
+    "price": 1200,
     "image": "pics\\oreoCake.png",
     "description": "A cake with the rich flavor of Oreo cookies."
   },
@@ -290,15 +290,15 @@ const products = [
     "id": 46,
     "name": "Pineapple Cake",
     "category": "Sweets",
-    "price": 1200,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 1350,
+    "image": "pics\\pineapple-cake.jpg",
     "description": "A light and fruity pineapple cake."
   },
   {
     "id": 47,
     "name": "Coffee Cake",
     "category": "Sweets",
-    "price": 950,
+    "price": 1150,
     "image": "pics\\cofee cake.jpg",
     "description": "A cake with a distinctive coffee flavor."
   },
@@ -306,8 +306,8 @@ const products = [
     "id": 48,
     "name": "Almond Cake",
     "category": "Sweets",
-    "price": 1000,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 1050,
+    "image": "pics\\almond cake.jpg",
     "description": "A moist cake with a rich almond taste."
   },
   {
@@ -315,95 +315,79 @@ const products = [
     "name": "Fudge Cake",
     "category": "Sweets",
     "price": 1500,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "image": "pics\\FudgeCake.jpg",
     "description": "A decadent and dense fudge cake."
   },
   {
     "id": 50,
     "name": "Brownie Cake",
     "category": "Sweets",
-    "price": 900,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 1400,
+    "image": "pics\\cake brown.jpg",
     "description": "A rich and chewy brownie-based cake."
   },
   {
     "id": 51,
-    "name": "Chocolate Cupcake",
+    "name": "Chocolate Cupcake 6 pics",
     "category": "Sweets",
-    "price": 120,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 850,
+    "image": "pics\\choclate cc.jpg",
     "description": "A single chocolate cupcake."
   },
   {
     "id": 52,
-    "name": "Pineapple Cupcake",
+    "name": "Pineapple Cupcake 6 pics",
     "category": "Sweets",
-    "price": 120,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 820,
+    "image": "pics\\pinecc.jpg",
     "description": "A single pineapple cupcake."
   },
   {
     "id": 53,
-    "name": "Oreo Cupcake",
+    "name": "Oreo Cupcake 6 pics",
     "category": "Sweets",
-    "price": 120,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
-    "description": "A single Oreo cupcake."
+    "price": 820,
+    "image": "pics\\oreo cc.jpg",
+    "description": "Homemade Oreo cupcakes."
   },
   {
     "id": 54,
-    "name": "Fudge Cupcake",
+    "name": "Fudge Cupcake 6 pics",
     "category": "Sweets",
-    "price": 300,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
-    "description": "A single fudge cupcake."
+    "price": 1800,
+    "image": "pics\\fudge cc.jpg",
+    "description": "Homemade fudge cupcakes."
   },
   {
-    "id": 55,
-    "name": "Chocolate Sundae",
+    "id": 70,
+    "name": "butterscotch Cupcake 6 pics",
     "category": "Sweets",
-    "price": 220,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
-    "description": "A sundae with rich chocolate sauce."
-  },
-  {
-    "id": 56,
-    "name": "Pineapple Sundae",
-    "category": "Sweets",
-    "price": 220,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
-    "description": "A refreshing sundae with pineapple topping."
+    "price": 1600,
+    "image": "pics\\caromal cc.jpg",
+    "description": "homemade butterscotch cupcakes."
   },
   {
     "id": 57,
     "name": "Caramel Sundae",
     "category": "Sweets",
-    "price": 220,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 300,
+    "image": "pics\\caramel ss.webp",
     "description": "A classic sundae with sweet caramel."
-  },
-  {
-    "id": 58,
-    "name": "Butterscotch Sundae",
-    "category": "Sweets",
-    "price": 220,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
-    "description": "A sundae with a creamy butterscotch flavor."
   },
   {
     "id": 59,
     "name": "Oreo Sundae",
     "category": "Sweets",
-    "price": 220,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 280,
+    "image": "pics\\oreo ss.jpg",
     "description": "A sundae topped with crushed Oreo cookies."
   },
   {
     "id": 60,
-    "name": "Plain Nan Khatai",
+    "name": "Plain Nan Khatai 1kg",
     "category": "Sweets",
-    "price": 1000,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 1200,
+    "image": "pics\\plankhatai.jpg",
     "description": "Traditional plain nan khatai biscuits."
   },
   {
@@ -411,23 +395,23 @@ const products = [
     "name": "Almond Nan Khatai",
     "category": "Sweets",
     "price": 1500,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "image": "pics\\khatai biscut.jpg",
     "description": "Nan khatai biscuits with almond pieces."
   },
   {
     "id": 62,
-    "name": "Cake Rusk",
+    "name": "Cake Rusk 1kg",
     "category": "Sweets",
-    "price": 1000,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 1500,
+    "image": "pics\\rusk.webp",
     "description": "Crispy and crunchy cake rusk."
   },
   {
     "id": 63,
-    "name": "Brownie",
+    "name": "Brownie 6 pics",
     "category": "Sweets",
-    "price": 200,
-    "image": "https://placehold.co/400x500/E3E7EB/5C5E60?text=No+Image+Available",
+    "price": 1320,
+    "image": "pics\\brownie.jpg",
     "description": "A single rich and chewy brownie."
   },
   {
@@ -443,7 +427,7 @@ const products = [
     "name": " 14 August Special Cake",
     "category": "Sweets",
     "price": 4000,
-    "image": "pics\\aug cake.jpg",
+    "image": "pics\\14augCake.jpg",
     "description": "2 pound speical cake."
   },
   {
