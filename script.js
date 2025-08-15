@@ -1397,30 +1397,6 @@ function closeComparisonModal() {
     document.body.style.overflow = '';
 }
 
-// 21. COOKIE CONSENT FUNCTIONS
-function acceptCookies() {
-    localStorage.setItem('cookieConsent', 'accepted');
-    hideCookieBanner();
-}
-
-function rejectCookies() {
-    localStorage.setItem('cookieConsent', 'rejected');
-    hideCookieBanner();
-}
-
-function hideCookieBanner() {
-    const banner = document.getElementById('cookie-banner');
-    if (banner) {
-        banner.style.display = 'none';
-    }
-}
-
-function checkCookieConsent() {
-    const consent = localStorage.getItem('cookieConsent');
-    if (consent) {
-        hideCookieBanner();
-    }
-}
 
 // 22. BACK TO TOP FUNCTION
 function scrollToTop() {
@@ -1440,49 +1416,74 @@ function handleScroll() {
 
 function createProductCard(product) {
     return `
-        <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group w-full cursor-pointer" onclick="openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})">
-            <div class="relative overflow-hidden">
+        <div class="bg-white shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group w-full cursor-pointer relative" onclick="openQuickView(${JSON.stringify(product).replace(/"/g, '&quot;')})">
+            <!-- Sale Badge -->
+            <div class="absolute top-3 left-3 z-20">
+                <span class="bg-yellow-500 text-white px-3 py-1 rounded-md text-xs font-bold shadow-md">
+                    Sale 20%
+                </span>
+            </div>
+            
+            
+            <!-- Quick action buttons overlay -->
+            <div class="absolute top-3 right-3 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button onclick="event.stopPropagation(); toggleWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})" class="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 mb-2 block">
+                    <svg class="w-4 h-4 ${isInWishlist(product.id) ? 'text-red-500 fill-current' : 'text-gray-600'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.682l-1.318-1.364a4.5 4.5 0 00-6.364 0z"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Product Image Section -->
+            <div class="relative overflow-hidden bg-gray-50 p-4">
                 <img
                     src="${product.image}"
                     alt="${product.name}"
-                    class="w-full h-48 sm:h-52 md:h-56 lg:h-64 object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                    class="w-full h-48 sm:h-60 object-contain object-center group-hover:scale-105 transition-transform duration-300"
                     onerror="this.src='https://placehold.co/400x500/E3E7EB/5C5E60?text=Image+Unavailable'"
                 />
-                <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-all duration-300"></div>
                 
-                <!-- Quick action buttons overlay -->
-                <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <button onclick="event.stopPropagation(); toggleWishlist(${JSON.stringify(product).replace(/"/g, '&quot;')})" class="bg-white p-2 rounded-full shadow-md hover:bg-gray-100 mb-2 block">
-                        <svg class="w-4 h-4 ${isInWishlist(product.id) ? 'text-red-500 fill-current' : 'text-gray-600'}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.682l-1.318-1.364a4.5 4.5 0 00-6.364 0z"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-            <div class="p-3 sm:p-4 md:p-5">
-                <p class="text-xs sm:text-sm text-yellow-600 font-medium mb-1 sm:mb-2">${product.category}</p>
-                <h3 class="text-base sm:text-lg md:text-xl font-semibold text-gray-800 mb-2 sm:mb-3 leading-tight line-clamp-2">${product.name}</h3>
-                <p class="text-sm sm:text-base text-gray-600 mb-3 sm:mb-4 leading-relaxed line-clamp-2">${product.description}</p>
-                
-                <!-- Rating display -->
-                <div class="flex items-center mb-2 sm:mb-3">
-                    <div class="flex text-yellow-400 text-sm">
-                        ★★★★☆
-                    </div>
-                    <span class="text-xs sm:text-sm text-gray-500 ml-1">(${getAverageRating(product.id) || '4.0'})</span>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
-                    <p class="text-lg sm:text-xl md:text-2xl font-bold text-gray-900">${formatPrice(product.price)} pkr</p>
-                    <button
-                        onclick="event.stopPropagation(); addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})"
-                        class="bg-yellow-600 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-medium hover:bg-yellow-700 transition-colors duration-300 transform hover:scale-105 w-full sm:w-auto"
-                    >
-                        Add to Cart
-                    </button>
+                <!-- Small product image in bottom right corner of main image -->
+                <div class="absolute bottom-3 right-3 w-12 h-12 bg-white rounded-lg shadow-md overflow-hidden">
+                    <img
+                        src="${product.image}"
+                        alt="${product.name} view"
+                        class="w-full h-full object-cover"
+                        onerror="this.src='https://placehold.co/64x64/E3E7EB/5C5E60?text=+'"
+                    />
                 </div>
             </div>
         </div>
+            <!-- Product Details Section -->
+            <div class="p-4 text-center">
+                <!-- Product Title -->
+                <h3 class="text-base sm:text-lg font-bold text-gray-900 mb-2 uppercase tracking-wider leading-tight line-clamp-2">
+                    ${product.name}
+                </h3>
+                
+                <!-- Price Section -->
+                <div class="mb-3">
+                    <div class="flex items-center justify-center gap-2">
+                        <!-- Original Price (crossed out) -->
+                        <span class="text-sm text-gray-400 line-through font-medium">
+                            ${formatPrice(Math.round(product.price * 1.43))} pkr
+                        </span>
+                        <!-- Sale Price -->
+                        <span class="text-lg sm:text-xl font-bold text-yellow-600">
+                            ${formatPrice(product.price)} pkr
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Add to Cart Button -->
+                <button
+                    onclick="event.stopPropagation(); addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})"
+                    class="text-black hover:bg-yellow-500 text-white px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-300 transform hover:scale-80 w-full uppercase tracking-wide"
+                >
+                    Add to Cart
+                </button>
+            </div>
+        
     `;
 }
 const mobileStyles = document.createElement('style');
