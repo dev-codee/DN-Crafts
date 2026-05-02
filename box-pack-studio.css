@@ -623,3 +623,124 @@ h1, h2, h3, h4 {
         align-items: center;
     }
 }
+
+/* ==== Footer Social Icons ==== */
+.social-container {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.social-logo {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffd700, #ffed4e, #ffc107);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+    overflow: hidden;
+    animation: pulse 2s infinite;
+}
+
+.social-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: all 0.5s;
+}
+
+.social-logo:hover::before {
+    left: 100%;
+}
+
+.social-logo:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+    background: linear-gradient(135deg, #ffed4e, #ffd700, #ff9800);
+    animation: none;
+}
+
+.social-logo svg {
+    width: 40px;
+    height: 40px;
+    fill: #1a1a2e;
+    transition: all 0.3s ease;
+    z-index: 2;
+}
+
+.social-logo:hover svg {
+    fill: #000;
+    transform: scale(1.1);
+}
+
+.facebook:hover {
+    background: linear-gradient(135deg, #ffd700, #4267B2);
+}
+.facebook:hover svg { fill: #fff; }
+
+.instagram:hover {
+    background: linear-gradient(135deg, #ffd700, #E4405F, #FCCC63, #833AB4);
+}
+.instagram:hover svg { fill: #fff; }
+
+.tiktok:hover {
+    background: linear-gradient(135deg, #ffd700, #000000);
+}
+.tiktok:hover svg { fill: #fff; }
+
+.logo-label {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #ffd700;
+    font-size: 12px;
+    font-weight: 600;
+    opacity: 0;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.social-logo:hover .logo-label {
+    opacity: 1;
+    bottom: -25px;
+}
+
+.glow-effect {
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.social-logo:hover .glow-effect {
+    opacity: 1;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); }
+    50% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.6); }
+    100% { box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3); }
+}
+
+@media (max-width: 768px) {
+    .social-container { gap: 30px; }
+    .social-logo { width: 70px; height: 70px; }
+    .social-logo svg { width: 35px; height: 35px; }
+}
