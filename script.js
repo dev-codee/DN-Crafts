@@ -13,7 +13,7 @@ const categories = [
     'Special Gifts',
 ];
 // Application State
-let cartItems = [];
+let cartItems = JSON.parse(localStorage.getItem('dncrafts_cart')) || [];
 let selectedCategory = 'All';
 let searchTerm = '';
 let isCartOpen = false;
@@ -74,13 +74,15 @@ function preloadImages() {
 }
 
 function updateSlide() {
+    if (slides.length === 0) return;
+
     // Remove active class from all slides and dots
     slides.forEach(slide => slide.classList.remove('active'));
     dots.forEach(dot => dot.classList.remove('active'));
 
     // Add active class to current slide and dot
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
+    if (slides[currentSlide]) slides[currentSlide].classList.add('active');
+    if (dots[currentSlide]) dots[currentSlide].classList.add('active');
 }
 
 function changeSlide(direction) {
@@ -180,6 +182,7 @@ function formatPrice(price) {
 }
 
 function updateCartCount() {
+    if (!elements.cartCount) return;
     const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
     elements.cartCount.textContent = count > 99 ? '99+' : count;
     if (count > 0) {
@@ -191,12 +194,11 @@ function updateCartCount() {
 
 function updateCartTotal() {
     const total = cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    elements.cartTotal.textContent = formatPrice(total);
-    elements.checkoutTotal.textContent = formatPrice(total);
+    if (elements.cartTotal) elements.cartTotal.textContent = formatPrice(total);
+    if (elements.checkoutTotal) elements.checkoutTotal.textContent = formatPrice(total);
     return total;
 }
 
-// Cart Functions
 function addToCart(product) {
     const existingItem = cartItems.find(item => item.id === product.id);
     if (existingItem) {
@@ -204,6 +206,7 @@ function addToCart(product) {
     } else {
         cartItems.push({ ...product, quantity: 1 });
     }
+    saveCart();
     updateCartDisplay();
     updateCartCount();
 }
@@ -216,6 +219,7 @@ function updateQuantity(id, newQuantity) {
     const item = cartItems.find(item => item.id === id);
     if (item) {
         item.quantity = newQuantity;
+        saveCart();
         updateCartDisplay();
         updateCartCount();
     }
@@ -223,19 +227,25 @@ function updateQuantity(id, newQuantity) {
 
 function removeItem(id) {
     cartItems = cartItems.filter(item => item.id !== id);
+    saveCart();
     updateCartDisplay();
     updateCartCount();
 }
 
+function saveCart() {
+    localStorage.setItem('dncrafts_cart', JSON.stringify(cartItems));
+}
+
 function updateCartDisplay() {
+    if (!elements.cartList) return;
     if (cartItems.length === 0) {
-        elements.emptyCart.classList.remove('hidden');
-        elements.cartList.classList.add('hidden');
-        elements.cartFooter.classList.add('hidden');
+        if (elements.emptyCart) elements.emptyCart.classList.remove('hidden');
+        if (elements.cartList) elements.cartList.classList.add('hidden');
+        if (elements.cartFooter) elements.cartFooter.classList.add('hidden');
     } else {
-        elements.emptyCart.classList.add('hidden');
-        elements.cartList.classList.remove('hidden');
-        elements.cartFooter.classList.remove('hidden');
+        if (elements.emptyCart) elements.emptyCart.classList.add('hidden');
+        if (elements.cartList) elements.cartList.classList.remove('hidden');
+        if (elements.cartFooter) elements.cartFooter.classList.remove('hidden');
 
         elements.cartList.innerHTML = cartItems.map(item => `
                     <div class="flex items-center space-x-3 sm:space-x-4 py-3 sm:py-4 border-b border-gray-200">
@@ -286,6 +296,7 @@ function updateCartDisplay() {
 }
 
 function updateCheckoutDisplay() {
+    if (!elements.checkoutItems) return;
     elements.checkoutItems.innerHTML = cartItems.map(item => `
                 <div class="flex justify-between items-start py-2 border-b border-gray-200 last:border-b-0">
                     <div class="flex-1 min-w-0 pr-2">
@@ -393,17 +404,72 @@ function handleEmailOrder() {
         return;
     }
 
-    const orderDetails = cartItems.map(item =>
-        `${item.name} (Qty: ${item.quantity}) - ${formatPrice(item.price * item.quantity)}`
-    ).join('%0D%0A');
+    const order_html = cartItems.map(item => {
+        const imageUrl = item.image.startsWith('http') ? item.image : `https://dncrafts.store/${item.image.startsWith('/') ? item.image.slice(1) : item.image}`;
+        return `
+      <table style="width: 100%; border-collapse: collapse">
+        <tr style="vertical-align: top">
+          <td style="padding: 24px 8px 0 4px; display: inline-block; width: max-content">
+            <img style="height: 64px; width: 64px; object-fit: cover; border-radius: 4px;" src="${imageUrl}" alt="item" />
+          </td>
+          <td style="padding: 24px 8px 0 8px; width: 100%">
+            <div style="font-weight: 600; color: #333;">${item.name}</div>
+            <div style="font-size: 14px; color: #888; padding-top: 4px">QTY: ${item.quantity}</div>
+          </td>
+          <td style="padding: 24px 4px 0 0; white-space: nowrap; color: #333;">
+            <strong>${formatPrice(item.price * item.quantity)}</strong>
+          </td>
+        </tr>
+      </table>
+        `;
+    }).join('');
 
-    const total = updateCartTotal();
+    const total = formatPrice(updateCartTotal());
 
-    const subject = 'New Order Request';
-    const body = `New Order Request:%0D%0A%0D%0ACustomer Details:%0D%0AName: ${customerInfo.name}%0D%0AEmail: ${customerInfo.email}%0D%0APhone: ${customerInfo.phone}%0D%0AAddress: ${customerInfo.address}, ${customerInfo.city}, ${customerInfo.postalCode}%0D%0A%0D%0AOrder Items:%0D%0A${orderDetails}%0D%0A%0D%0ATotal: ${formatPrice(total)}`;
+    const originalText = elements.emailOrder.innerHTML;
+    elements.emailOrder.innerHTML = 'Sending...';
+    elements.emailOrder.disabled = true;
 
-    const mailtoUrl = `mailto:infodncrafts@gmail.com?subject=${subject}&body=${body}`;
-    window.location.href = mailtoUrl;
+    // EmailJS Parameters matching your EmailJS Template
+    const templateParams = {
+        customer_name: customerInfo.name,
+        customer_email: customerInfo.email,
+        customer_phone: customerInfo.phone,
+        customer_address: `${customerInfo.address}, ${customerInfo.city}, ${customerInfo.postalCode}`,
+        order_html: order_html,
+        total_amount: total
+    };
+
+    // Replace these three variables with your actual EmailJS keys!
+    const SERVICE_ID = "service_hremqa9";
+    const TEMPLATE_ID = "template_r3w22ta";
+    const PUBLIC_KEY = "Af_U0QKy9oCfYqJuT";
+    if (SERVICE_ID === "YOUR_SERVICE_ID") {
+        alert("Please replace YOUR_SERVICE_ID, YOUR_TEMPLATE_ID, and YOUR_PUBLIC_KEY in script.js to enable EmailJS!");
+        elements.emailOrder.innerHTML = originalText;
+        elements.emailOrder.disabled = false;
+        return;
+    }
+
+    // Send the email automatically via EmailJS
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams, PUBLIC_KEY)
+        .then((response) => {
+            alert("Order sent successfully! We will contact you soon.");
+            cartItems = [];
+            saveCart();
+            updateCartDisplay();
+            updateCartCount();
+            closeCheckout();
+            if (elements.customerForm) elements.customerForm.reset();
+            validateForm();
+        }, (error) => {
+            console.error("Error sending order:", error);
+            alert("There was an error sending your order. Please try WhatsApp instead.");
+        })
+        .finally(() => {
+            elements.emailOrder.innerHTML = originalText;
+            validateForm();
+        });
 }
 
 // Product Display Functions
@@ -527,22 +593,27 @@ function filterProducts() {
 
 // Update the renderProducts function
 function renderProducts() {
+    if (!document.getElementById('products-grid')) return;
     let filteredProducts = filterProducts();
 
     // Apply sorting
     filteredProducts = getSortedProducts(filteredProducts);
 
+    const noProductsEl = document.getElementById('no-products');
+    const categoriesContainerEl = document.getElementById('categories-container');
+
     if (filteredProducts.length === 0) {
-        document.getElementById('no-products').classList.remove('hidden');
-        document.getElementById('categories-container').classList.add('hidden');
+        if (noProductsEl) noProductsEl.classList.remove('hidden');
+        if (categoriesContainerEl) categoriesContainerEl.classList.add('hidden');
     } else {
-        document.getElementById('no-products').classList.add('hidden');
-        document.getElementById('categories-container').classList.remove('hidden');
+        if (noProductsEl) noProductsEl.classList.add('hidden');
+        if (categoriesContainerEl) categoriesContainerEl.classList.remove('hidden');
         populateProducts(filteredProducts);
     }
 }
 
 function renderCategories() {
+    if (!elements.categoryFilter) return;
     elements.categoryFilter.innerHTML = categories.map(category => `
                 <button
                     onclick="selectCategory('${category}')"
@@ -609,41 +680,47 @@ function toggleMobileSearch() {
 // Event Listeners
 function setupEventListeners() {
     // Cart Events
-    elements.cartToggle.addEventListener('click', toggleCart);
-    elements.cartClose.addEventListener('click', closeCart);
-    elements.cartBackdrop.addEventListener('click', closeCart);
-    elements.checkoutBtn.addEventListener('click', openCheckout);
+    if (elements.cartToggle) elements.cartToggle.addEventListener('click', toggleCart);
+    if (elements.cartClose) elements.cartClose.addEventListener('click', closeCart);
+    if (elements.cartBackdrop) elements.cartBackdrop.addEventListener('click', closeCart);
+    if (elements.checkoutBtn) elements.checkoutBtn.addEventListener('click', openCheckout);
 
     // Checkout Events
-    elements.checkoutClose.addEventListener('click', closeCheckout);
-    elements.checkoutBackdrop.addEventListener('click', closeCheckout);
-    elements.whatsappOrder.addEventListener('click', handleWhatsAppOrder);
-    elements.emailOrder.addEventListener('click', handleEmailOrder);
+    if (elements.checkoutClose) elements.checkoutClose.addEventListener('click', closeCheckout);
+    if (elements.checkoutBackdrop) elements.checkoutBackdrop.addEventListener('click', closeCheckout);
+    if (elements.whatsappOrder) elements.whatsappOrder.addEventListener('click', handleWhatsAppOrder);
+    if (elements.emailOrder) elements.emailOrder.addEventListener('click', handleEmailOrder);
 
     // Search Events
-    elements.desktopSearch.addEventListener('input', () => {
-        syncSearchInputs();
-        handleSearch();
-    });
-    elements.mobileSearchInput.addEventListener('input', () => {
-        syncSearchInputs();
-        handleSearch();
-    });
+    if (elements.desktopSearch) {
+        elements.desktopSearch.addEventListener('input', () => {
+            syncSearchInputs();
+            handleSearch();
+        });
+    }
+    if (elements.mobileSearchInput) {
+        elements.mobileSearchInput.addEventListener('input', () => {
+            syncSearchInputs();
+            handleSearch();
+        });
+    }
 
     // Mobile Menu Events
-    elements.mobileMenuToggle.addEventListener('click', toggleMobileMenu);
-    elements.mobileSearchToggle.addEventListener('click', toggleMobileSearch);
+    if (elements.mobileMenuToggle) elements.mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+    if (elements.mobileSearchToggle) elements.mobileSearchToggle.addEventListener('click', toggleMobileSearch);
 
     // Form Validation
-    const formInputs = elements.customerForm.querySelectorAll('input[required]');
-    formInputs.forEach(input => {
-        input.addEventListener('input', () => {
-            const customerInfo = getCustomerInfo();
-            const isValid = validateCustomerInfo(customerInfo);
-            elements.whatsappOrder.disabled = !isValid;
-            elements.emailOrder.disabled = !isValid;
+    if (elements.customerForm) {
+        const formInputs = elements.customerForm.querySelectorAll('input[required]');
+        formInputs.forEach(input => {
+            input.addEventListener('input', () => {
+                const customerInfo = getCustomerInfo();
+                const isValid = validateCustomerInfo(customerInfo);
+                elements.whatsappOrder.disabled = !isValid;
+                elements.emailOrder.disabled = !isValid;
+            });
         });
-    });
+    }
 
     // Keyboard Events
     document.addEventListener('keydown', (e) => {
@@ -671,11 +748,12 @@ function init() {
     renderCategories();
     renderProducts();
     updateCartCount();
+    updateCartDisplay();
     setupEventListeners();
 
     // Set initial button states
-    elements.whatsappOrder.disabled = true;
-    elements.emailOrder.disabled = true;
+    if (elements.whatsappOrder) elements.whatsappOrder.disabled = true;
+    if (elements.emailOrder) elements.emailOrder.disabled = true;
 }
 
 // Start the application when DOM is loaded

@@ -470,4 +470,28 @@ const products = [
     "image": "pics\\lightFrame.jpg",
     "description": "Customized light frame with pic."
   },
+  {
+    "id": 69,
+    "name": "Half KG Black Qurbani Boxes",
+    "category": "All",
+    "price": 100,
+    "image": "pics/eid box.jpeg",
+    "description": "Premium finish, leak-proof design."
+  },
+  {
+    "id": 70,
+    "name": "1 KG Premium Black Boxes",
+    "category": "All",
+    "price": 150,
+    "image": "pics/eid box.jpeg",
+    "description": "Spacious, durable, and luxurious."
+  },
+  {
+    "id": 71,
+    "name": "Premium Shoppers",
+    "category": "All",
+    "price": 50,
+    "image": "pics/eid box.jpeg",
+    "description": "Elegant and strong carrying bags."
+  }
 ];
